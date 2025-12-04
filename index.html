@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조선왕조의궤 아카이브</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo" onclick="switchMainTab('home')">
+            <img src="img/logo.webp" alt="로고" class="logo-img">
+            <span class="logo-text">조선왕조의궤 아카이브</span>
+            <div class="color-chips">
+                <span class="color-chip" style="background-color: #aa4c39;"></span>
+                <span class="color-chip" style="background-color: #64493a;"></span>
+                <span class="color-chip" style="background-color: #356636;"></span>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li id="menu-home" class="active-menu" onclick="switchMainTab('home')">홈</li>
+                <li id="menu-intro" onclick="switchMainTab('intro')">소개</li>
+                <li id="menu-archive-hub" onclick="switchMainTab('archive-hub')">아카이브</li>
+                <li id="menu-archive" onclick="switchMainTab('archive')">디지털 자료실</li>
+                <li id="menu-ritual" onclick="switchMainTab('ritual')">의례 이야기</li>
+                <li id="menu-rest" onclick="switchMainTab('rest')">쉼터</li>
+            </ul>
+        </nav>
+
+        <div class="user-menu">
+            <span onclick="switchMainTab('record')"><img src="img/archive-box.png" alt="보관함"></span> 
+            <span onclick="switchMainTab('profile')"><img src="img/king-icon.png" alt="왕(프로필)"></span>
+        </div>
+    </header>
+
+    <div class="breadcrumb" id="breadcrumb">
+        <span class="current">홈</span>
+    </div>
+
+    <main id="section-home" class="main-section active-section container">
+        
+        <div class="home-hero-wrapper">
+            <div class="home-hero-bg">
+                <img src="img/bg-banner.jpeg" alt="배경배너">
+            </div>
+            
+            <div class="home-hero-content">
+                <h1 class="main-title">디테일로 읽는 왕실 기록, 장면으로 느끼는 조선의 시간</h1>
+                
+                <div class="dark-search-bar">
+                    <span class="icon">🔍 </span>
+                    <input type="text" placeholder="궁중의례, 인물, 장소, 복식 검색">
+                </div>
+            </div>
+
+            <div class="home-menu-cards">
+                    <div class="menu-card" onclick="switchMainTab('ritual')">
+                        <img src="img/ritual.jpg" alt="의례">
+                        <div class="label">의례</div>
+                    </div>
+                    <div class="menu-card" onclick="goArchiveHubPage('artifact-search'); switchMainTab('archive-hub');">
+                        <img src="img/costume.jpeg" alt="복식">
+                        <div class="label">복식</div>
+                    </div>
+                    <div class="menu-card" onclick="goArchiveHubPage('people-search'); switchMainTab('archive-hub');">
+                        <img src="img/people.webp" alt="인물">
+                        <div class="label">인물</div>
+                    </div>
+                    <div class="menu-card" onclick="switchMainTab('archive-hub')">
+                        <img src="img/royal-seal.jpg" alt="어보(유물)">
+                        <div class="label">유물</div>
+                    </div>
+                    <div class="menu-card">
+                        <img src="img/food.jpg" alt="음식">
+                        <div class="label">음식</div>
+                    </div>
+                </div>
+
+        </div>
+
+        <section class="home-section">
+            <h2 class="section-title">큐레이터가 고른 오늘의 이야기</h2>
+            <div class="curator-grid">
+                <div class="curator-card" onclick="switchMainTab('rest')">
+                    <div class="curator-img"><img src="img/bangsangsi.jpeg" alt="방상시"></div>
+                    <div class="curator-text">
+                        <h3>방상시(方相氏)를 찾아라!</h3>
+                        <p>위례 중국의 신(神)으로, 곰의 가죽을 두르고 네 개의 황금 눈이 박힌 가면을 썼으며 손에는 창과 방패를 든 모습으로 묘사됩니다.</p>
+                    </div>
+                </div>
+                <div class="curator-card">
+                    <div class="curator-img"><img src="img/hwaseong.jpg" alt="화성행차"></div>
+                    <div class="curator-text">
+                        <h3>정조의 화성행차는 어땠을까?</h3>
+                        <p>정조는 어느 왕보다도 궁궐 밖 나들이인 행행(行幸)을 자주했다. 재위 24년간 총 66회의 행행을 했으며...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-section">
+            <h2 class="section-title">독자가 선택한 장면</h2>
+            <div class="reader-grid">
+                <div class="reader-col">
+                    <h3>👁 가장 많이 본 의궤 문서</h3>
+                    <ul class="rank-list-simple">
+                        <li><span>1. 수원 화성성역의궤</span> <span class="count">12,345회</span></li>
+                        <li><span>2. 정조대왕 능행차 반차도</span> <span class="count">9,870회</span></li>
+                        <li><span>3. 동의보감 (언해본)</span> <span class="count">7,654회</span></li>
+                        <li><span>4. 조선왕조실록 (세종편)</span> <span class="count">6,233회</span></li>
+                        <li><span>5. 영조 어진 제작 기록</span> <span class="count">5,432회</span></li>
+                    </ul>
+                </div>
+                <div class="reader-col">
+                    <h3>📺 인기 왕실 의례 장면</h3>
+                    <ul class="rank-list-simple">
+                        <li>왕세자 가례 (혼례) 의례 <span class="sub">조선 전기</span></li>
+                        <li>임금 행차 의례 <span class="sub">정조대왕</span></li>
+                        <li>종묘대제 (종묘 제례악) <span class="sub">국가 제례</span></li>
+                        <li>궁중 연회 (진연) <span class="sub">고종 즉위</span></li>
+                        <li>농업 장려 의례 (친경) <span class="sub">성종대왕</span></li>
+                    </ul>
+                </div>
+                <div class="reader-col">
+                    <h3>🔖 사용자들이 즐겨찾는 문서</h3>
+                    <ul class="rank-list-simple">
+                        <li>세종대왕의 한글 창제 일화 <span class="icon">♥</span></li>
+                        <li>이순신 장군의 난중일기 번역본 <span class="icon">♥</span></li>
+                        <li>조선 시대 건축 양식 분석 <span class="icon">♥</span></li>
+                        <li>해학반도도 상세 해설 <span class="icon">♥</span></li>
+                        <li>궁중 의상 도감 <span class="icon">♥</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-section media-grid">
+            <div class="media-box bgm-box">
+                <h3>왕실의 하루 BGM</h3>
+                <div class="bgm-player">
+                    <div class="current-track">
+                        <img src="img/sujecheon.jpeg" alt="수제천(앨범)">
+                        <div class="track-info">
+                            <strong>수제천 (壽齊天)</strong>
+                            <span>국립국악원</span>
+                        </div>
+                        <div class="controls">❚❚</div>
+                    </div>
+                    <ul class="bgm-list">
+                        <li>FLOWER - Jisoo <span class="time">3:05</span></li>
+                        <li>Shape of You - Ed Sheeran <span class="time">3:53</span></li>
+                        <li>Blinding Lights - The Weeknd <span class="time">3:20</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="media-box viewer-box">
+                <h3>반차도 3D 뷰어</h3>
+                <div class="viewer-content">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/2sCdFEbkkfE?si=P49EjjneIUOR3bHV&amp;start=26" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="viewer-icons">
+                        <span>🔍</span> <span>↺</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <main id="section-intro" class="main-section container">
+        
+        <div class="intro-header">
+            <span class="intro-badge">아카이브 소개</span>
+            <h1>기록을 넘어, 시대를 잇는 디지털 아카이브</h1>
+            <p>조선왕조의궤의 위대한 기록 유산을 현대적 기술로 재해석하여누구나 쉽고 생생하게 역사를 경험할 수 있는 공간입니다.</p>
+        </div>
+
+        <hr style="margin: 60px 0; border: 0; border-top: 1px solid #ddd;">
+
+        <div class="intro-about">
+            <div class="intro-img">
+                <img src="img/uigwe-book.gif" alt="조선왕조의궤">
+            </div>
+            <div class="intro-text">
+                <h2>조선왕조의궤(朝鮮王朝儀軌)란?</h2>
+                <p class="highlight">"조선 시대 국가 의례의 전 과정을 글과 그림으로 기록한 종합 보고서"</p>
+                <p>
+                    의궤는 조선 시대 왕실의 주요 행사나 국가적인 건축 사업 등 중요한 일의 전 과정을
+                    상세하게 기록한 서적입니다. 행사에 참여한 인원, 사용된 물건, 재료, 비용, 
+                    그리고 행렬의 배치까지 글과 그림(반차도)으로 생생하게 남겼습니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="intro-values">
+            <div class="value-card">
+                <div class="value-icon">🏛️</div>
+                <h3>보존과 계승</h3>
+                <p>시간이 흘러도 변하지 않는 디지털 기록으로 </br> 의궤의 가치를 온전하게 후대에 전합니다.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💻</div>
+                <h3>기술의 융합</h3>
+                <p>AI, 3D 모델링 등 최신 기술을 접목하여 </br> 평면적인 기록을 입체적인 경험으로 확장합니다.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>소통과 공유</h3>
+                <p>사용자가 직접 참여하고 지식을 나누는 열린 커뮤니티를 지향합니다.</p>
+            </div>
+        </div>
+
+    </main>
+
+
+    <main id="section-archive-hub" class="main-section container">
+        
+        <div id="page-hub-landing" class="sub-page active fade-in">
+            <div class="search-container" style="margin-bottom: 60px;">
+                <span class="search-label">아카이브 검색</span>
+                <input type="text" placeholder="인물, 사건, 유물, 의례 검색">
+                <span style="cursor:pointer; font-size: 24px;">🔍</span>
+            </div>
+
+            <div class="archive-carousel-container">
+                <button class="carousel-arrow prev" onclick="moveArchiveSlide(-1)">❮</button>
+                <div class="archive-track-container">
+                    <div class="archive-track" id="archiveTrack">
+                        <div class="hub-slide-card" onclick="goArchiveHubPage('people-search')">
+                            <div class="hub-slide-img"><img src="img/portrait.png" alt="어진(인물)"></div>
+                            <div class="hub-slide-info"><h3>인물</h3><p>조선 왕실의 인물들을 만나며<br>시대의 위엄과 품격을 느껴보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
+                        </div>
+                        <div class="hub-slide-card" onclick="goArchiveHubPage('artifact-search')">
+                            <div class="hub-slide-img"><img src="img/royal-seal.jpg" alt="어보(유물)"></div>
+                            <div class="hub-slide-info"><h3>의상 및 유물</h3><p>화려한 왕실 의상과 정교한 유물을 통해<br>조선의 문화와 예술을 감상해보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
+                        </div>
+                        <div class="hub-slide-card">
+                            <div class="hub-slide-img"><img src="img/ritual.jpg" alt="의례(행렬)"></div>
+                            <div class="hub-slide-info"><h3>행렬 및 음악</h3><p>왕실 행렬과 궁중 음악을 감상하며,<br>위엄과 아악의 아름다움에 빠져보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
+                        </div>
+                        <div class="hub-slide-card">
+                            <div class="hub-slide-img"><img src="img/food.jpg" alt="음식"></div>
+                            <div class="hub-slide-info"><h3>궁중 음식</h3><p>정갈한 궁중 음식을 통해<br>왕실의 식문화를 체험해보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-arrow next" onclick="moveArchiveSlide(1)">❯</button>
+            </div>
+            
+            <div class="carousel-indicators">
+                <span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span>
+            </div>
+        </div>
+
+        <div id="page-hub-people-search" class="sub-page fade-in">
+            <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('landing')" class="back-btn">← 아카이브 홈</button></div>
+            <div class="search-container" style="margin-bottom: 30px;"><span class="search-label">인물 검색</span><input type="text" placeholder="예) 선조" value=""><span style="cursor:pointer; font-size: 24px;">🔍</span></div>
+            
+            <div class="layout-split">
+                <aside class="sidebar">
+                    <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;"><span style="font-weight:700; color:#888;">상세검색</span> <span style="font-size:18px; font-weight:700;">검색필터</span></div>
+                    <div class="filter-section"><span class="filter-title">자료 유형</span><div class="filter-item"><input type="checkbox" checked> 사진</div></div>
+                    <div class="filter-section"><span class="filter-title">소장처</span><div class="filter-item"><input type="checkbox" checked> 국립조선왕조실록박물관</div></div>
+                </aside>
+                <main class="result-grid" style="flex:1;">
+                    <div class="item-card" onclick="goArchiveHubPage('people-detail')"><div class="item-img"><span>인물</span><img src="img/seonjo.jpg" alt="선조" style="width:100%; height:100%; object-fit:cover;"></div><div class="item-title">제14대 국왕 선조(宣祖)</div></div>
+                    <div class="item-card"><div class="item-img"><span>문헌</span></div><div class="item-title">선조실록</div></div>
+                    <div class="item-card"><div class="item-img"><span>유물</span></div><div class="item-title">선조 어필</div></div>
+                </main>
+            </div>
+        </div>
+
+        <div id="page-hub-people-detail" class="sub-page fade-in">
+            <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('people-search')" class="back-btn">← 검색 결과</button></div>
+            <div class="people-profile">
+                <div class="people-img"><img src="img/seonjo.jpg" alt="선조"></div>
+                <div class="people-info">
+                    <h2>선조(宣祖)</h2>
+                    <p class="life-span">1552년 ~ 1608년 (재위 1567~1608)</p>
+                    <ul class="people-meta">
+                        <li><strong>본관:</strong> 전주 이씨</li>
+                        <li><strong>배우자:</strong> 의인왕후 박씨, 인목왕후 김씨</li>
+                    </ul>
+                    <div class="people-desc">
+                        <h3>인물 소개</h3>
+                        <p>조선 제14대 국왕으로, 임진왜란이라는 국가적 위기를 겪었으며, 실리적 개력을 추진한 인물입니다. </p>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 50px 0; border: 0; border-top: 1px solid #ddd;">
+            <div class="timeline-section">
+                <h3>연대기</h3>
+                <div class="timeline">
+                    <div class="timeline-item"><div class="year">1552년</div><div class="desc">한성부에서 덕흥군의 셋째 아들로 태어나다.</div></div>
+                    <div class="timeline-item"><div class="year">1567년</div><div class="desc">명종이 후사 없이 승하하자 왕위에 오르다.</div></div>
+                    <div class="timeline-item highlight" onclick="goArchiveHubPage('event-detail')"><div class="year">1589년</div><div class="desc"><strong>기축옥사</strong> 발생 <span style="font-size:12px; color:#aa4c39;">(클릭하여 보기)</span></div></div>
+                    <div class="timeline-item"><div class="year">1608년</div><div class="desc">선조가 <strong>창덕궁</strong>에서 승하하다.</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-hub-event-detail" class="sub-page fade-in">
+            <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('people-detail')" class="back-btn">← 선조 연대기로</button></div>
+            <div class="event-header"><h2>기축옥사(己丑獄事)</h2><p class="source">《선조실록》 59권</p></div>
+            <div class="event-content">
+                <div class="text-box translation">
+                    <h3>《국역》</h3>
+                    <p class="highlight-text">정탁이 아뢰기를, "비록 죄는 입지 않았으나 위에서 지금까지 미처 통촉하지 못하시기 때문에 감히 주달하는 것입니다." 하고...</p></div>
+                <div class="text-box original">
+                    <h3>《원문》</h3>
+                    <p>上曰: "守愼, 其時不在罪(藉)〔籍〕 中矣。" 琢曰: "雖不被罪, 自上至今, 未及洞燭, 故敢達。" </p></div>
+            </div>
+        </div>
+
+        <div id="page-hub-artifact-search" class="sub-page fade-in">
+            <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('landing')" class="back-btn">← 아카이브 홈</button></div>
+            <div class="search-container" style="margin-bottom: 30px;">
+                <span class="search-label">유물 검색</span>
+                <input type="text" placeholder="예) 청룡포" value="">
+                <span style="cursor:pointer; font-size: 24px;">🔍</span>
+            </div>
+            
+            <div class="layout-split">
+                <aside class="sidebar">
+                    <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;">
+                        <span style="font-weight:700; color:#888;">상세검색</span> <span style="font-size:18px; font-weight:700;">검색필터</span>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-title">자료 유형</span>
+                        <div class="filter-item"><input type="checkbox" checked> 사진</div>
+                        <div class="filter-item"><input type="checkbox"> 3D 모델</div>
+                    </div>
+                </aside>
+
+                <main class="result-grid" style="flex:1;">
+                    <div class="item-card" onclick="goArchiveHubPage('artifact-detail')">
+                        <div class="item-img"><span>의상</span><img src="img/blue-robe.png" alt="청룡포" style="width:100%; height:100%; object-fit:cover;"></div>
+                        <div class="item-title">청룡포(靑龍袍)</div>
+                    </div>
+                    <div class="item-card"><div class="item-img"><span>의상</span><img src="img/red-robe.jpg" alt="홍룡포" style="width:100%; height:100%; object-fit:cover;"></div><div class="item-title">홍룡포</div></div>
+                    <div class="item-card"><div class="item-img"><span>의상</span><img src="img/myeonbok.jpg" alt="면복" style="width:100%; height:100%; object-fit:cover;"></div><div class="item-title">면복</div></div>
+                </main>
+            </div>
+        </div>
+
+        <div id="page-hub-artifact-detail" class="sub-page fade-in">
+            <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('artifact-search')" class="back-btn">← 검색 결과</button></div>
+            
+            <div class="artifact-layout">
+                <div class="artifact-viewer-container" style="flex: 2;">
+                    
+                    <div class="viewer-tabs">
+                        <button class="tab-btn active">사진</button>
+                        <button class="tab-btn">3D 모델 보기</button>
+                    </div>
+
+                    <div class="artifact-viewer">
+                        <div class="viewer-window">
+                            <img src="img/blue-robe-detail.jpg" alt="청룡포(상세)" style="width:80%; height:auto;">
+                        </div>
+                        <div class="viewer-controls">
+                            <button>&lt;</button> <span>1 / 3</span> <button>&gt;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="artifact-info">
+                    <h2>청룡포(靑龍袍)</h2>
+                    <table class="artifact-table"><tr><th>유형</th><td>곤룡포</td></tr><tr><th>착용</th><td>국왕</td></tr></table>
+                    <div class="artifact-record"><h3>관련 기록</h3><div class="record-item"><strong>1392년</strong><p>조선 건국과 함께 제정.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="section-archive" class="main-section container">
+        
+        <div id="page-archive-landing" class="sub-page active fade-in">
+            <div class="search-container">
+                <span class="search-label">빠른검색</span>
+                <input type="text" placeholder="사진, 동영상, 3D 모델 검색">
+                <span style="cursor:pointer; font-size: 24px;">🔍</span>
+            </div>
+            
+            <div class="category-grid">
+                <div class="category-card" onclick="goArchivePage('list')">
+                    <div class="card-img"><img src="img/ex-photo.png" alt="사진 예"></div>
+                    <div class="card-label">사진</div>
+                </div>
+                <div class="category-card">
+                    <div class="card-img"><img src="img/ex-video.png" alt="동영상 예"></div>
+                    <div class="card-label">동영상</div>
+                </div>
+                <div class="category-card">
+                    <div class="card-img"><img src="img/ex-model.png" alt="3D모델 예"></div>
+                    <div class="card-label">3D 모델</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-archive-list" class="sub-page fade-in">
+            <div class="search-container" style="margin-bottom: 30px;">
+                <span class="search-label">통합검색</span>
+                <input type="text" placeholder="사진 검색" value="">
+                <span style="cursor:pointer; font-size: 24px;">🔍</span>
+            </div>
+            <div class="layout-split">
+                <aside class="sidebar">
+                    <div class="filter-section">
+                        <span class="filter-title">자료 유형</span>
+                        <div class="filter-item"><input type="checkbox" checked> 사진 (1,234)</div>
+                        <div class="filter-item"><input type="checkbox"> 동영상 (101)</div>
+                        <div class="filter-item"><input type="checkbox"> 3D 모델 (50)</div>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-title">관련 인물</span>
+                        <input type="text" placeholder="예) 숙종" style="width: 100%; padding: 5px; font-family:'Pretendard'">
+                    </div>
+                </aside>
+                <main class="result-grid">
+                    <div class="item-card" onclick="goArchivePage('detail')">
+                        <div class="item-img">
+                            <span>사진</span>
+                            <img src="img/wedding-book.webp" alt="숙종인현왕후가례도감" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div class="item-title">숙종인현왕후가례도감의궤</div>
+                    </div>
+                    <div class="item-card"><div class="item-img"><span>사진</span></div><div class="item-title">숙종인현왕후가례도감의궤</div></div>
+                </main>
+            </div>
+        </div>
+
+        <div id="page-archive-detail" class="sub-page fade-in">
+            <div style="margin-bottom: 20px;">
+                <button onclick="goArchivePage('list')" class="back-btn"> ↩ 뒤로가기</button>
+            </div>
+            
+            <div class="detail-header">
+                <img src="img/icon-image.png" alt="사진아이콘">
+                <h2>숙종인현왕후가례도감의궤</h2>
+            </div>
+            
+            <div class="detail-content">
+                <div class="detail-image-area">
+                    <div class="detail-image-placeholder">
+                        <img src="img/wedding-book.webp" alt="숙종인현왕후가례도감" style="max-width:100%;">
+                    </div>
+                    <div class="detail-controls">
+                        <button class="control-btn"><img src="img/btn-zoom-in.png" alt="돋보기확대버튼"></button>
+                        <button class="control-btn"><img src="img/btn-zoom-out.png" alt="돋보기축소버튼"></button>
+                        <button class="control-btn"><img src="img/btn-download.png" alt="다운로드버튼"></button>
+                    </div>
+                </div>
+                <div class="detail-info-area">
+                    <div class="info-title">데이터 상세정보</div>
+                    <hr style="margin-bottom: 20px; border:0; border-top:1px solid #ddd;">
+                    <ul class="info-list">
+                        <li>• <strong>데이터 형태:</strong> JPG</li>
+                        <li>• <strong>구축연도:</strong> 2025년</li>
+                        <li>• <strong>소장기관:</strong> 국립조선왕조실록박물관</li>
+                    </ul>
+                    <hr style="margin: 20px 0; border:0; border-top:1px solid #ddd;">
+                    <div class="info-title">관련 키워드</div>
+                    <div class="keywords">
+                        <span class="tag">#의궤</span> <span class="tag">#숙종</span> <span class="tag">#인현왕후</span>
+                    </div>
+                    <button onclick="switchMainTab('ritual')" style="margin-top: 50px; padding: 10px 20px; background: #333; color:#fff; border:none; cursor: pointer; font-weight:700; width:100%;">
+                        관련 의례 이야기 보러가기 →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="section-ritual" class="main-section container">
+        
+        <div id="scene-selection" class="sub-page active fade-in">
+            <div class="ritual-header">
+                <h2>관심 있는 의례를 클릭하여 관련 이야기를 살펴보세요!</h2>
+            </div>
+            <div class="ritual-grid">
+                <div class="ritual-card">
+                    <div class="ritual-icon"><img src="img/gil-rye.png" alt="길례"></div>
+                    <div>
+                        <div class="ritual-title">길례 (吉禮)</div>
+                        <div class="ritual-desc-title">제사(祭祀) 의례</div>
+                        <div class="ritual-desc">국가의 안녕과 왕실의 번영을 기원하며<br>신과 조상에게 지내는 제사</div>
+                    </div>
+                </div>
+                <div class="ritual-card">
+                    <div class="ritual-icon"><img src="img/ga-rye.webp" alt="가례"></div>
+                    <div>
+                        <div class="ritual-title">가례 (嘉禮)</div>
+                        <div class="ritual-desc-title">경사(慶事) 의례</div>
+                        <div class="ritual-desc">혼례, 책봉, 즉위, 연회 등 <br>왕실의 기쁘고 경사스러운 행사</div>
+                    </div>
+                </div>
+                <div class="ritual-card">
+                    <div class="ritual-icon"><img src="img/bin-rye.webp" alt="빈례"></div>
+                    <div>
+                        <div class="ritual-title">빈례 (賓禮)</div>
+                        <div class="ritual-desc-title">외교(外交) 의례</div>
+                        <div class="ritual-desc">외국 사신을 맞이하고 접대하는 의식. <br>주로 중국 사신 영접이 핵심</div>
+                    </div>
+                </div>
+                <div class="ritual-card">
+                    <div class="ritual-icon"><img src="img/gun-rye.webp" alt="군례"></div>
+                    <div>
+                        <div class="ritual-title">군례 (軍禮)</div>
+                        <div class="ritual-desc-title">군사(軍事) 의례</div>
+                        <div class="ritual-desc">군사적인 위엄을 보이고 <br>병사들을 훈련, 사열하는 의식</div>
+                    </div>
+                </div>
+                <div class="ritual-card" onclick="goRitualScene(2)">
+                     <div class="ritual-icon"><img src="img/hyung-rye.webp" alt="흉례"></div>
+                    <div>
+                        <div class="ritual-title">흉례 (凶禮)</div>
+                        <div class="ritual-desc-title">상장(喪葬) 의례</div>
+                        <div class="ritual-desc">왕실의 죽음과 관련된 장례 및 <br>국가적인 슬픔을 애도하는 의식</div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="scene-ontology-1" class="sub-page fade-in">
+            <div class="ontology-wrapper" style="position: relative;">
+                <div class="control-bar"><button class="control-btn" onclick="goRitualScene(1)" style="width:auto; padding:0 10px;">🏠 처음으로</button></div>
+                <div id="network1" style="width: 100%; height: 100%;"></div>
+            </div>
+        </div>
+
+        <div id="scene-ontology-2" class="sub-page fade-in">
+            <div class="ontology-wrapper" style="position: relative;">
+                <div class="control-bar"><button class="control-btn" onclick="goRitualScene(1)" style="width:auto; padding:0 10px;">🏠 처음으로</button><button class="control-btn" onclick="goRitualScene(2)" style="width:auto; padding:0 10px;">↩ 뒤로가기</button></div>
+                <div id="network2" style="width: 100%; height: 100%;"></div>
+            </div>
+        </div>
+
+        <div id="scene-ontology-3" class="sub-page fade-in">
+            <div class="ontology-wrapper" style="position: relative;">
+                <div class="control-bar"><button class="control-btn" onclick="goRitualScene(1)" style="width:auto; padding:0 10px;">🏠 처음으로</button><button class="control-btn" onclick="goRitualScene(3)" style="width:auto; padding:0 10px;">↩ 뒤로가기</button></div>
+                <div id="network3" style="width: 100%; height: 100%;"></div>
+            </div>
+        </div>
+    </main>
+
+    <main id="section-record" class="main-section container">
+        <div class="record-header">
+            <h2>나의 연구 도구</h2>
+            <p>조선 왕실 의궤 원문, 번역, 삽화 이미지를 동시에 탐색하고 연구 자료를 관리하세요.</p>
+        </div>
+        <div class="record-layout">
+            <aside class="record-sidebar">
+                <ul class="record-menu">
+                    <li class="active">♥ 즐겨찾기</li>
+                    <li>📁 장바구니</li>
+                    <li>📝 나의 기록</li>
+                </ul>
+                <div class="fav-list">
+                    <div class="fav-item">★ 정조대왕 능행차 반차도</div>
+                    <div class="fav-item">고종 황제 즉위식 원문</div>
+                    <div class="fav-item">★ 영조 국장도감의궤</div>
+                    <div class="fav-item">★ 철종 가례도감의궤</div>
+                    <div class="fav-item">순종 황제 장례식 삽화집</div>
+                </div>
+            </aside>
+            <div class="record-content">
+                <div class="content-box">
+                    <h3>1527년(중종 22) 3월 26일, 궁중 연례...</h3>
+                    <p class="content-text">이 연회는 엄격한 절차에 따라 진행되었으며...</p>
+                    <div class="content-actions">
+                        <button class="action-btn">자세히 보기</button>
+                        <button class="action-btn primary">다운로드</button>
+                    </div>
+                </div>
+                <div class="content-box">
+                    <h3>나의 연구 노트</h3>
+                    <textarea placeholder="나만의 연구 노트를 작성하세요..." style="width:100%; height:100px; border:1px solid #ddd; padding:10px; margin-top:10px; border-radius:4px; font-family:'Pretendard';"></textarea>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="section-rest" class="main-section container">
+         <div class="rest-header">
+            <h2>조선왕조의궤 아카이브 커뮤니티에 오신 것을 환영합니다.</h2>
+            <p>조선 왕조의 빛나는 역사와 문화를 탐험하고, 지식을 나누며 함께 성장하는 공간입니다.</p>
+        </div>
+        <div class="rest-layout">
+            <div class="activity-section">
+                <h3 style="margin-bottom:20px;">주요 커뮤니티 활동</h3>
+                <div class="activity-grid">
+                    <div class="activity-card"><div class="act-icon">🗣️</div><h4>토론 포럼</h4><p>자유롭게 의견을 나누세요</p></div>
+                    <div class="activity-card"><div class="act-icon">🧩</div><h4>퀴즈 도전</h4><p>역사 지식을 테스트해보세요</p></div>
+                    <div class="activity-card"><div class="act-icon">🔍</div><h4>틀린 그림 찾기</h4><p>틀린 곳을 찾아라!</p></div>
+                </div>
+            </div>
+            <aside class="rest-sidebar">
+                <div class="ranking-box" style="margin-bottom:30px;">
+                    <h3>🏆 퀴즈 순위표</h3>
+                    <ul class="rank-list">
+                        <li><span>1. 지식 김군</span> <span>1250점</span></li>
+                        <li><span>2. 조선탐험가</span> <span>1180점</span></li>
+                        <li><span>3. 역사덕후</span> <span>1100점</span></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <main id="section-profile" class="main-section container" style="padding:0; max-width:100%;">
+        <div class="login-wrapper">
+            <div class="bg-side-left">
+                <img src="img/login-bg.png" alt="로그인 배경">
+            </div>
+
+            <div class="bg-side-right">
+                <img src="img/login-bg.png" alt="로그인 배경">
+            </div>
+
+            <div class="login-box">
+                <h2>로그인</h2>
+                <div class="input-group"><input type="email" placeholder="이메일 주소"></div>
+                <div class="input-group"><input type="password" placeholder="비밀번호"></div>
+                <div class="login-options"><label><input type="checkbox"> 로그인 상태 유지</label><a href="#">비밀번호 찾기</a></div>
+                <button class="login-btn">Sign in</button>
+                <div class="divider"><span>또는</span></div>
+                <div class="social-login">
+                    <button class="social-btn google">G</button>
+                    <button class="social-btn facebook">F</button>
+                    <button class="social-btn apple">A</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>@ 2025-2학기 UXUI디자인개론 프로젝트 _ 차다빈, 이아현, 박이슬 </footer>
+
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="graphs.js"></script>
+    <script>
+        let currentArchiveIndex = 0;
+        function switchMainTab(tabName) {
+            document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active-menu'));
+            if(document.getElementById('menu-' + tabName)) document.getElementById('menu-' + tabName).classList.add('active-menu');
+            document.querySelectorAll('.main-section').forEach(section => section.classList.remove('active-section'));
+            document.getElementById('section-' + tabName).classList.add('active-section');
+            const bread = document.getElementById('breadcrumb');
+            if(tabName === 'home') bread.innerHTML = '<span class="current">홈</span>';
+            else if(tabName === 'archive-hub') { bread.innerHTML = '<span class="current">아카이브</span>'; goArchiveHubPage('landing'); }
+            else if(tabName === 'archive') { bread.innerHTML = '<span class="current">디지털 자료실</span>'; goArchivePage('landing'); }
+            else if(tabName === 'ritual') { bread.innerHTML = '<span class="current">의례 이야기</span>'; goRitualScene(1); }
+            else if(tabName === 'record') bread.innerHTML = '<span class="current">나의 연구 도구</span>';
+            else if(tabName === 'rest') bread.innerHTML = '<span class="current">쉼터</span>';
+            else if(tabName === 'profile') bread.innerHTML = '<span class="current">로그인</span>';
+        }
+        function goArchiveHubPage(pageName) {
+            const section = document.getElementById('section-archive-hub');
+            section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+            const bread = document.getElementById('breadcrumb');
+            if(pageName === 'landing') {
+                document.getElementById('page-hub-landing').classList.add('active');
+                bread.innerHTML = '<span class="current">아카이브</span>';
+                currentArchiveIndex = 0; moveArchiveSlide(0);
+            } else if(pageName === 'people-search') {
+                document.getElementById('page-hub-people-search').classList.add('active');
+                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'landing\')">아카이브</span> <span class="separator">></span> <span class="current">인물 검색</span>';
+            } else if(pageName === 'people-detail') {
+                document.getElementById('page-hub-people-detail').classList.add('active');
+                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'landing\')">아카이브</span> <span class="separator">></span> <span class="nav-link" onclick="goArchiveHubPage(\'people-search\')">인물 검색</span> <span class="separator">></span> <span class="current">선조</span>';
+            } else if(pageName === 'event-detail') {
+                document.getElementById('page-hub-event-detail').classList.add('active');
+                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'people-detail\')">선조</span> <span class="separator">></span> <span class="current">기축옥사</span>';
+            } else if(pageName === 'artifact-search') {
+                document.getElementById('page-hub-artifact-search').classList.add('active');
+                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'landing\')">아카이브</span> <span class="separator">></span> <span class="current">유물 검색</span>';
+            } else if(pageName === 'artifact-detail') {
+                document.getElementById('page-hub-artifact-detail').classList.add('active');
+                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'artifact-search\')">유물 검색</span> <span class="separator">></span> <span class="current">청룡포</span>';
+            }
+        }
+        function moveArchiveSlide(direction) {
+            const track = document.getElementById('archiveTrack');
+            const indicators = document.querySelectorAll('.indicator');
+            const totalSlides = 4;
+            currentArchiveIndex += direction;
+            if (currentArchiveIndex < 0) currentArchiveIndex = totalSlides - 1;
+            else if (currentArchiveIndex >= totalSlides) currentArchiveIndex = 0;
+            track.style.transform = `translateX(-${currentArchiveIndex * 100}%)`;
+            indicators.forEach((ind, idx) => {
+                if(idx === currentArchiveIndex) ind.classList.add('active');
+                else ind.classList.remove('active');
+            });
+        }
+        function goArchivePage(pageName) {
+            const section = document.getElementById('section-archive');
+            section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+            if(pageName === 'landing') document.getElementById('page-archive-landing').classList.add('active');
+            else if(pageName === 'list') document.getElementById('page-archive-list').classList.add('active');
+            else if(pageName === 'detail') document.getElementById('page-archive-detail').classList.add('active');
+        }
+        function goRitualScene(step) {
+            const section = document.getElementById('section-ritual');
+            section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+            if(step === 1) document.getElementById('scene-selection').classList.add('active');
+            else if(step === 2) { document.getElementById('scene-ontology-1').classList.add('active'); setTimeout(drawNetwork1, 100); }
+            else if(step === 3) { document.getElementById('scene-ontology-2').classList.add('active'); setTimeout(drawNetwork2, 100); }
+            else if(step === 4) { document.getElementById('scene-ontology-3').classList.add('active'); setTimeout(drawNetwork3, 100); }
+        }
+    </script>
+</body>
+</html>
