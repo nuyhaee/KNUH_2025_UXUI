@@ -29,7 +29,7 @@
                 <li id="menu-archive-hub" onclick="switchMainTab('archive-hub')">아카이브</li>
                 <li id="menu-archive" onclick="switchMainTab('archive')">디지털 자료실</li>
                 <li id="menu-ritual" onclick="switchMainTab('ritual')">의례 이야기</li>
-                <li id="menu-rest" onclick="switchMainTab('rest')">쉼터</li>
+                <li id="menu-rest" onclick="switchMainTab('rest')">집현전</li>
             </ul>
         </nav>
 
@@ -843,34 +843,54 @@
             </div>
         </div>
 
-        <div class="comm-game-zone-bg">
+        <div class="comm-quiz-zone-bg">
             <div class="comm-container comm-split-row">
                 
                 <div class="comm-left-panel">
-                    <h3 class="comm-section-title" style="text-align:left; margin-bottom:20px;">조선 왕실 기록물: 다른 그림 찾기</h3>
+                    <h3 class="comm-section-title" style="text-align:left; margin-bottom:20px;">오늘의 조선 왕실 퀴즈</h3>
                     
-                    <div class="game-ui-container">
-                        <div class="game-top-bar">
-                            <div class="game-stats-simple">
-                                <span>찾은 차이점: <strong>3/5</strong></span>
-                                <span>남은 힌트: <strong>2</strong></span>
-                                <span>시간: <strong>05:15</strong></span>
-                            </div>
-                            <div class="game-actions-simple">
-                                <button class="game-btn-s blue"><i class="far fa-lightbulb"></i> 힌트</button>
-                                <button class="game-btn-s green"><i class="fas fa-redo"></i> 재시작</button>
-                            </div>
+                    <div class="quiz-ui-container">
+                        <div class="quiz-top-bar">
+                            <span class="quiz-badge">Q. 1</span>
+                            <div class="quiz-timer"><i class="far fa-clock"></i> 00:15</div>
                         </div>
 
-                        <div class="game-images-row">
-                            <div class="game-img-box"><img src="img/royal-seal.jpg" alt="원본"><span class="img-label">원본</span></div>
-                            <div class="game-img-box"><img src="img/royal-seal.jpg" alt="비교본"><span class="img-label">비교본</span></div>
+                        <div class="quiz-question">
+                            의궤(儀軌)의 명칭이 뜻하는 바는 무엇일까요?
+                        </div>
+
+                        <div class="quiz-options">
+                            <button class="quiz-opt-btn" onclick="checkAnswer(this, false)">
+                                <span class="opt-label">A</span>
+                                <span class="opt-text">궁궐의 건축(建築)과 보존(保存) 과정</span>
+                            </button>
+                            
+                            <button class="quiz-opt-btn" onclick="checkAnswer(this, true)">
+                                <span class="opt-label">B</span>
+                                <span class="opt-text">의례(儀禮)의 모범(模範)과 법식(法式)</span>
+                            </button>
+                            
+                            <button class="quiz-opt-btn" onclick="checkAnswer(this, false)">
+                                <span class="opt-label">C</span>
+                                <span class="opt-text">의식(儀式)의 규모와 궤적(軌跡)</span>
+                            </button>
+                            
+                            <button class="quiz-opt-btn" onclick="checkAnswer(this, false)">
+                                <span class="opt-label">D</span>
+                                <span class="opt-text">왕의 명령(命令)과 신하들의 건의(建議)</span>
+                            </button>
+                        </div>
+
+                        <div class="quiz-progress-area">
+                            <div class="quiz-prog-label">퀴즈 진행률 1/5</div>
+                            <div class="quiz-prog-bg"><div class="quiz-prog-fill" style="width: 20%;"></div></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="comm-right-panel">
-                    <div class="comm-rank-box" style="height: 100%;"> <h3 class="comm-sub-title">퀴즈 순위표</h3>
+                    <div class="comm-rank-box" style="height: 100%;"> 
+                        <h3 class="comm-sub-title">퀴즈 순위표</h3>
                         <ul class="comm-rank-list">
                             <li>
                                 <span class="rank-num first">1</span>
@@ -1202,6 +1222,23 @@
             if (cfIndex < 0) cfIndex = totalCfSlides - 1;
             else if (cfIndex >= totalCfSlides) cfIndex = 0;
             updateCoverFlow();
+        }
+
+        // [NEW] 퀴즈 정답 확인 함수
+        function checkAnswer(btn, isCorrect) {
+            // 이미 클릭된 상태면 무시 (중복 클릭 방지)
+            if(btn.parentElement.classList.contains('answered')) return;
+
+            // 부모 컨테이너에 'answered' 클래스 추가하여 다른 버튼 비활성화 느낌 주기
+            btn.parentElement.classList.add('answered');
+
+            if (isCorrect) {
+                btn.classList.add('correct');
+                alert("정답입니다! 👏");
+            } else {
+                btn.classList.add('wrong');
+                alert("아쉽네요, 오답입니다. 😅");
+            }
         }
 
         // 4. 마이페이지 (파노라마 슬라이드) 로직
