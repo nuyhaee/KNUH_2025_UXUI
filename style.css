@@ -462,6 +462,203 @@ font-weight: 700;
 .activity-card { border: 1px solid #eee; padding: 20px; text-align: center; border-radius: 10px; cursor: pointer; transition: 0.2s; background: #fff; }
 
 /* =========================================
+   [NEW] 쉼터 (Community) 페이지 스타일
+   ========================================= */
+
+/* 공통 컨테이너 제한 */
+.comm-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* 1. 히어로 섹션 (전체 너비 배경) */
+.comm-hero-wrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    margin-bottom: 60px;
+}
+.comm-hero-wrapper::before {
+    content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+    background: rgba(255, 255, 255, 0.6); /* 흰색 반투명 오버레이 */
+}
+.comm-hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.comm-hero-content h1 { font-family: 'Joseon100Years', serif; font-size: 42px; color: #333; margin-bottom: 15px; line-height: 1.3; }
+.comm-hero-content p { font-size: 18px; color: #555; margin-bottom: 40px; }
+
+.comm-search-bar {
+    position: relative; max-width: 600px; margin: 0 auto 30px;
+}
+.comm-search-bar input {
+    width: 100%; padding: 15px 50px 15px 25px; border-radius: 30px; border: 1px solid #ddd;
+    font-size: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); outline: none;
+}
+.comm-search-btn {
+    position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; font-size: 20px; cursor: pointer;
+}
+.comm-join-btn {
+    background: #1b4332; color: #fff; padding: 12px 30px; border-radius: 25px;
+    border: none; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s;
+}
+.comm-join-btn:hover { background: #143226; }
+
+
+.comm-discuss-card:hover { border-color: #aaa; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.cd-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.cd-avatar { width: 40px; height: 40px; border-radius: 50%; }
+.cd-meta strong { display: block; font-size: 14px; }
+.cd-meta span { font-size: 12px; color: #888; }
+.cd-title { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+.cd-snippet { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 15px; }
+.cd-footer { display: flex; gap: 15px; font-size: 13px; color: #888; }
+.cd-footer i { margin-right: 5px; }
+.comm-outline-btn {
+    border: 1px solid #aaa; background: #fff; padding: 10px 25px; border-radius: 20px;
+    cursor: pointer; font-size: 14px; font-weight: 600; color: #5d5aff; border-color: #5d5aff;
+}
+
+/* 섹션 타이틀 공통 */
+.comm-section-title { text-align: center; font-size: 28px; margin-bottom: 10px; font-weight: 700; color: #333; }
+.comm-section-desc { text-align: center; color: #666; margin-bottom: 50px; font-size: 15px; }
+.comm-sub-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+
+/* 2. 주요 활동 (3단 그리드) */
+.comm-activities-grid {
+    display: flex; justify-content: center; gap: 40px; margin-bottom: 80px; flex-wrap: wrap;
+}
+.comm-act-item { text-align: center; width: 280px; }
+.comm-act-icon {
+    width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px;
+    display: flex; align-items: center; justify-content: center; font-size: 32px; color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.comm-act-icon.green { background: #2e7d32; }
+.comm-act-icon.red { background: #c62828; }
+.comm-act-icon.blue { background: #1565c0; }
+.comm-act-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.comm-act-item p { font-size: 14px; color: #666; line-height: 1.5; }
+
+/* 레이아웃 분할 (3:1 비율) */
+.comm-split-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.comm-left-panel { flex: 3; } /* 넓은 영역 (토론, 게임) */
+.comm-right-panel { flex: 1; min-width: 280px; } /* 좁은 영역 (태그, 랭킹) */
+
+.comm-header-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;
+}
+.comm-text-btn { background: none; border: none; color: #666; cursor: pointer; font-size: 14px; }
+.comm-text-btn:hover { text-decoration: underline; color: #333; }
+
+/* 태그 박스 스타일 */
+.comm-tags-box { 
+    background: #fff; padding: 20px; border: 1px solid #eee; border-radius: 12px; 
+}
+.comm-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-pill {
+    background: #fff3e0; color: #e65100; padding: 6px 12px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.tag-pill:hover { background: #ffe0b2; transform: translateY(-2px); }
+
+/* 게임 존 배경 */
+.comm-game-zone-bg {
+    width: 100vw; margin-left: calc(-50vw + 50%);
+    background: #fdfbf7; padding: 60px 0; margin-bottom: 60px;
+}
+
+/* 게임 UI 컨테이너 (새로운 스타일) */
+.game-ui-container {
+    background: #fff; border-radius: 12px; padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee;
+}
+.game-top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; background: #f5f5f5; padding: 15px; border-radius: 8px;
+}
+.game-stats-simple span { margin-right: 20px; font-size: 14px; color: #555; }
+.game-stats-simple strong { color: #333; font-size: 16px; }
+.game-actions-simple { display: flex; gap: 10px; }
+.game-btn-s {
+    border: none; padding: 8px 16px; border-radius: 4px; color: #fff; font-weight: 700;
+    cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 5px;
+}
+.game-btn-s.blue { background: #1a237e; }
+.game-btn-s.green { background: #2e7d32; }
+
+.game-images-row { display: flex; gap: 20px; }
+.game-img-box { flex: 1; position: relative; border-radius: 8px; overflow: hidden; border: 2px solid #ddd; aspect-ratio: 4/3; }
+.game-img-box img { width: 100%; height: 100%; object-fit: cover; }
+.img-label {
+    position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6);
+    color: #fff; padding: 2px 8px; font-size: 12px; border-radius: 4px;
+}
+
+/* 퀴즈 순위표 스타일 수정 */
+.comm-rank-box { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #eee; }
+.comm-rank-list li { padding: 12px 0; display: flex; align-items: center; border-bottom: 1px solid #f9f9f9; }
+.rank-num { width: 24px; font-weight: 700; color: #888; text-align: center; margin-right: 10px; }
+.rank-num.first { color: #d32f2f; font-size: 18px; }
+
+/* 3. 분할 레이아웃 (토론 + 사이드바) */
+.comm-split-layout { display: flex; gap: 40px; margin-bottom: 80px; align-items: flex-start; }
+.comm-discussion-area { flex: 2; }
+.comm-sidebar-area { flex: 1; min-width: 300px; }
+
+/* 토론 카드 */
+.comm-discuss-card {
+    border: 1px solid #eee; border-radius: 12px; padding: 25px; margin-bottom: 20px;
+    background: #fff; transition: 0.2s;
+}
+.comm-discuss-card:hover { border-color: #aaa; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.cd-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.cd-avatar { width: 40px; height: 40px; border-radius: 50%; }
+.cd-meta strong { display: block; font-size: 14px; }
+.cd-meta span { font-size: 12px; color: #888; }
+.cd-title { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
+.cd-snippet { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 15px; }
+.cd-footer { display: flex; gap: 15px; font-size: 13px; color: #888; }
+.cd-footer i { margin-right: 5px; }
+.comm-outline-btn {
+    border: 1px solid #aaa; background: #fff; padding: 10px 25px; border-radius: 20px;
+    cursor: pointer; font-size: 14px; font-weight: 600; color: #5d5aff; border-color: #5d5aff;
+}
+
+/* 5. 스토리 그리드 */
+.comm-stories-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;
+}
+.story-card {
+    border: 1px solid #eee; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.2s;
+}
+.story-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.story-img { height: 180px; position: relative; background: #f0f0f0; }
+.story-img img { width: 100%; height: 100%; object-fit: cover; }
+.story-tag {
+    position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 4px;
+    font-size: 12px; font-weight: 700; color: #fff;
+}
+.story-tag.yellow { background: #fbc02d; color: #333; }
+.story-tag.beige { background: #d7ccc8; color: #333; }
+.story-tag.brown { background: #5d4037; }
+.story-tag.green { background: #388e3c; }
+
+.story-content { padding: 20px; }
+.story-content h4 { font-size: 16px; margin-bottom: 10px; font-weight: 700; height: 44px; overflow: hidden; }
+.story-content p { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.5; height: 40px; overflow: hidden; }
+.story-meta { display: flex; justify-content: space-between; font-size: 12px; color: #888; }
+.comm-orange-btn {
+    background: #f57c00; color: #fff; border: none; padding: 12px 40px;
+    border-radius: 25px; font-weight: 700; cursor: pointer; transition: 0.2s;
+}
+.comm-orange-btn:hover { background: #ef6c00; }
+
+
+/* =========================================
    [NEW] 프로필/로그인 (Profile) 스타일 - 수정본
    ========================================= */
 
