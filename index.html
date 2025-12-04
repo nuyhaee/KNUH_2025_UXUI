@@ -34,7 +34,7 @@
         </nav>
 
         <div class="user-menu">
-            <span onclick="handleProfileClick()"><img src="img/king-icon.png" alt="프로필"></span>
+            <span onclick="switchMainTab('profile')"><img src="img/king-icon.png" alt="프로필"></span>
         </div>
     </header>
 
@@ -236,7 +236,7 @@
                             <img src="img/portrait.png" alt="인물">
                         </div>
                         <div class="card-text">
-                            <h3>인물 (人物)</h3>
+                            <h3>인물</h3>
                             <p>조선 왕실의 인물들을 만나며<br>시대의 위엄을 느껴보세요.</p>
                             <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
                         </div>
@@ -781,32 +781,86 @@
                             <h3>최근 조회한 의궤</h3>
                             <p>이전에 보았던 의궤를 다시 찾기 위해 검색하는 수고를 덜고 효율적인 학습 및 연구 활동을 지원합니다.</p>
                         </div>
-                        <button class="mp-btn-rounded">전체 보기</button>
+                        <button class="mp-btn-rounded" onclick="alert('전체 목록 페이지로 이동합니다.')">전체 보기</button>
                     </div>
 
-                    <div class="mp-book-grid">
-                        <div class="mp-book-item">
-                            <div class="mp-book-img"><img src="img/hwaseong.jpg" alt="표지"></div> <h4>화성성역의궤</h4>
-                            <p>2025.07.15 14:30</p>
+                    <div class="museum-slider-wrapper" style="padding-bottom: 0;">
+                        
+                        <div class="museum-track-container">
+                            <div class="museum-track" id="recentTrack">
+                                
+                                <div class="museum-slide" onclick="alert('화성성역의궤 상세페이지로 이동')">
+                                    <img src="img/hwaseong.jpg" alt="화성성역의궤">
+                                    <div class="museum-overlay">
+                                        <div class="slide-title">
+                                            <span style="display:block; font-size:12px; font-weight:400; opacity:0.8;">2025.07.15</span>
+                                            화성성역의궤
+                                        </div>
+                                        <div class="icon-360">다시보기</div>
+                                    </div>
+                                </div>
+
+                                <div class="museum-slide" onclick="alert('원행을묘정리의궤 상세페이지로 이동')">
+                                    <img src="img/wedding-book.webp" alt="원행을묘정리의궤">
+                                    <div class="museum-overlay">
+                                        <div class="slide-title">
+                                            <span style="display:block; font-size:12px; font-weight:400; opacity:0.8;">2025.07.14</span>
+                                            원행을묘정리의궤
+                                        </div>
+                                        <div class="icon-360">다시보기</div>
+                                    </div>
+                                </div>
+
+                                <div class="museum-slide" onclick="alert('국장도감의궤 상세페이지로 이동')">
+                                    <img src="img/ritual.jpg" alt="국장도감의궤">
+                                    <div class="museum-overlay">
+                                        <div class="slide-title">
+                                            <span style="display:block; font-size:12px; font-weight:400; opacity:0.8;">2025.07.10</span>
+                                            국장도감의궤
+                                        </div>
+                                        <div class="icon-360">다시보기</div>
+                                    </div>
+                                </div>
+
+                                <div class="museum-slide" onclick="alert('진찬의궤 상세페이지로 이동')">
+                                    <img src="img/food.jpg" alt="진찬의궤">
+                                    <div class="museum-overlay">
+                                        <div class="slide-title">
+                                            <span style="display:block; font-size:12px; font-weight:400; opacity:0.8;">2025.07.01</span>
+                                            진찬의궤
+                                        </div>
+                                        <div class="icon-360">다시보기</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="museum-slide">
+                                    <img src="img/portrait.png" alt="어진">
+                                    <div class="museum-overlay">
+                                        <div class="slide-title">
+                                            <span style="display:block; font-size:12px; font-weight:400; opacity:0.8;">2025.06.20</span>
+                                            영조어진도감의궤
+                                        </div>
+                                        <div class="icon-360">다시보기</div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="mp-book-item">
-                            <div class="mp-book-img"><img src="img/wedding-book.webp" alt="표지"></div>
-                            <h4>원행을묘정리의궤</h4>
-                            <p>2025.07.15 14:30</p>
+
+                        <div class="museum-controls">
+                            <div class="museum-progress-bg">
+                                <div class="museum-progress-fill" id="recentProgress"></div>
+                            </div>
+                            
+                            <div class="museum-btns">
+                                <button onclick="moveRecentSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="toggleRecentAutoPlay()" id="recentPauseBtn"><i class="fas fa-pause"></i></button>
+                                <button onclick="moveRecentSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                            </div>
                         </div>
-                        <div class="mp-book-item">
-                            <div class="mp-book-img"><img src="img/ritual.jpg" alt="표지"></div>
-                            <h4>국장도감의궤</h4>
-                            <p>2025.07.15 14:30</p>
-                        </div>
-                        <div class="mp-book-item">
-                            <div class="mp-book-img"><img src="img/food.jpg" alt="표지"></div>
-                            <h4>진찬의궤</h4>
-                            <p>2025.07.15 14:30</p>
-                        </div>
+
                     </div>
                 </section>
-            </div>
 
             <section class="mp-comments-section">
                 <h2 class="mp-dark-title">마음을 담은 코멘트</h2>
@@ -859,148 +913,166 @@
     <script src="graphs.js"></script>
     <script>
 
-        // [NEW] 로그인 버튼 클릭 시 (로그인 성공 처리)
-        function handleLogin() {
-            // (간단한 유효성 검사 생략 가능)
-            alert("로그인 되었습니다! 나의 연구 도구로 이동합니다.");
-            
-            isLoggedIn = true; // ★ 로그인 상태로 변경
-            switchMainTab('record'); // 기록 페이지로 이동
-        }
-        
-       // [NEW] 로그인 시 마이페이지로 화면 전환하는 함수
-        function doLogin() {
-            // 1. 로그인 입력폼 숨기기
-            document.getElementById('view-login').style.display = 'none';
-            // 2. 마이페이지 내용 보이기
-            document.getElementById('view-mypage').style.display = 'block';
-            
-            // 3. (선택사항) 상단의 로그인 메뉴 아이콘 등을 '로그인됨' 상태로 변경하려면 여기서 처리
-            // 예: document.querySelector('.user-menu img').src = 'img/logged-in-icon.png';
-            
-            // 4. 화면 최상단으로 이동
-            window.scrollTo(0, 0);
-        }
-// [수정됨] 커버 플로우 슬라이드 로직
-        let cfIndex = 0; // 현재 활성화된 인덱스
-        const cfCards = document.querySelectorAll('.coverflow-card');
-        const cfDots = document.querySelectorAll('.slider-dots .dot');
-        const totalCfSlides = cfCards.length;
+        // ★ [중요] 로그인 상태 변수 선언
+        let isLoggedIn = false;
 
-        // 초기 실행
-        updateCoverFlow();
-
-        function updateCoverFlow() {
-            // 모든 카드 초기화 (클래스 제거)
-            cfCards.forEach(card => {
-                card.classList.remove('active', 'prev', 'next', 'hide-left', 'hide-right');
-            });
-            
-            // 인디케이터 초기화
-            cfDots.forEach(dot => dot.classList.remove('active'));
-            if(cfDots[cfIndex]) cfDots[cfIndex].classList.add('active');
-
-            // 1. 현재(Active) 카드 설정
-            cfCards[cfIndex].classList.add('active');
-
-            // 2. 이전(Prev) 카드 설정
-            // (인덱스가 0이면 마지막 카드가 이전 카드가 됨 - 순환)
-            let prevIndex = (cfIndex - 1 + totalCfSlides) % totalCfSlides;
-            cfCards[prevIndex].classList.add('prev');
-
-            // 3. 다음(Next) 카드 설정
-            // (인덱스가 마지막이면 첫번째 카드가 다음 카드가 됨 - 순환)
-            let nextIndex = (cfIndex + 1) % totalCfSlides;
-            cfCards[nextIndex].classList.add('next');
-
-            // 4. 나머지 카드 처리 (숨김)
-            // 카드가 4개뿐이므로 active, prev, next를 제외한 하나는 숨겨야 함
-            for(let i=0; i < totalCfSlides; i++) {
-                if(i !== cfIndex && i !== prevIndex && i !== nextIndex) {
-                    // 현재 위치보다 작으면 왼쪽으로 숨기고, 크면 오른쪽으로 숨김
-                    // 순환 구조라 단순 비교는 어렵지만, 4개 기준으로는 
-                    // active 맞은편 카드를 적절히 숨겨주면 됩니다.
-                    if (i < cfIndex) card.classList.add('hide-left');
-                    else card.classList.add('hide-right');
-                    
-                    // (간단히 모두 hide-right로 보내도 무방함, 어차피 안보임)
-                    cfCards[i].classList.add('hide-right'); 
-                }
-            }
-        }
-
-        // 버튼 클릭 시 이동 함수
-        function moveCoverFlow(direction) {
-            cfIndex += direction;
-            
-            // 인덱스 순환 처리
-            if (cfIndex < 0) cfIndex = totalCfSlides - 1;
-            else if (cfIndex >= totalCfSlides) cfIndex = 0;
-            
-            updateCoverFlow();
-        }
-
-        // 페이지 로드 시에도 초기화 (안전을 위해)
-        window.addEventListener('load', () => {
-             // 0.1초 뒤 실행 (DOM 렌더링 확보)
-             setTimeout(updateCoverFlow, 100);
-        });
-        
-        // 아카이브 탭 클릭 시에도 초기화 (탭 전환 시 깨짐 방지)
-        // 기존 switchMainTab 함수 내 'archive-hub' 분기에 추가 권장
-        let currentArchiveIndex = 0;
+        // 1. 메인 탭 전환 함수 (통합됨)
         function switchMainTab(tabName) {
+            // 네비게이션 스타일
             document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active-menu'));
-            if(document.getElementById('menu-' + tabName)) document.getElementById('menu-' + tabName).classList.add('active-menu');
+            if(document.getElementById('menu-' + tabName)) {
+                document.getElementById('menu-' + tabName).classList.add('active-menu');
+            }
+
+            // 섹션 보이기/숨기기
             document.querySelectorAll('.main-section').forEach(section => section.classList.remove('active-section'));
             document.getElementById('section-' + tabName).classList.add('active-section');
+
+            // 브레드크럼 및 페이지 초기화
             const bread = document.getElementById('breadcrumb');
             if(tabName === 'home') bread.innerHTML = '<span class="current">홈</span>';
             else if(tabName === 'archive-hub') { bread.innerHTML = '<span class="current">아카이브</span>'; goArchiveHubPage('landing'); }
             else if(tabName === 'archive') { bread.innerHTML = '<span class="current">디지털 자료실</span>'; goArchivePage('landing'); }
             else if(tabName === 'ritual') { bread.innerHTML = '<span class="current">의례 이야기</span>'; goRitualScene(1); }
-            else if(tabName === 'record') bread.innerHTML = '<span class="current">나의 연구 도구</span>';
             else if(tabName === 'rest') bread.innerHTML = '<span class="current">쉼터</span>';
-            else if(tabName === 'profile') bread.innerHTML = '<span class="current">로그인</span>';
+            else if(tabName === 'record') bread.innerHTML = '<span class="current">나의 연구 도구</span>';
+            
+            // ★ 프로필 탭 클릭 시 로직 (로그인 여부 체크)
+            else if(tabName === 'profile') {
+                if (isLoggedIn) {
+                    document.getElementById('view-login').style.display = 'none';
+                    document.getElementById('view-mypage').style.display = 'block';
+                    bread.innerHTML = '<span class="current">마이페이지</span>';
+                    // 슬라이더 갱신 (레이아웃 깨짐 방지)
+                    setTimeout(() => { updateRecentSlider(); startRecentAutoPlay(); }, 100);
+                } else {
+                    document.getElementById('view-login').style.display = 'flex';
+                    document.getElementById('view-mypage').style.display = 'none';
+                    bread.innerHTML = '<span class="current">로그인</span>';
+                }
+            }
         }
+
+        // 2. 로그인 수행 함수 (통합됨)
+        function doLogin() {
+            isLoggedIn = true;
+            // 화면 전환
+            document.getElementById('view-login').style.display = 'none';
+            document.getElementById('view-mypage').style.display = 'block';
+            document.getElementById('breadcrumb').innerHTML = '<span class="current">마이페이지</span>';
+            window.scrollTo(0, 0);
+
+            // 슬라이더 초기화
+            setTimeout(() => {
+                updateRecentSlider();
+                startRecentAutoPlay();
+            }, 100);
+        }
+
+        // 3. 아카이브 허브 (커버 플로우 슬라이드) 로직
+        let cfIndex = 0;
+        const cfCards = document.querySelectorAll('.coverflow-card');
+        const cfDots = document.querySelectorAll('.slider-dots .dot');
+        const totalCfSlides = cfCards.length;
+
+        function updateCoverFlow() {
+            cfCards.forEach(card => card.classList.remove('active', 'prev', 'next', 'hide-left', 'hide-right'));
+            cfDots.forEach(dot => dot.classList.remove('active'));
+            if(cfDots[cfIndex]) cfDots[cfIndex].classList.add('active');
+
+            cfCards[cfIndex].classList.add('active');
+            let prevIndex = (cfIndex - 1 + totalCfSlides) % totalCfSlides;
+            cfCards[prevIndex].classList.add('prev');
+            let nextIndex = (cfIndex + 1) % totalCfSlides;
+            cfCards[nextIndex].classList.add('next');
+
+            for(let i=0; i < totalCfSlides; i++) {
+                if(i !== cfIndex && i !== prevIndex && i !== nextIndex) {
+                    if (i < cfIndex) cfCards[i].classList.add('hide-left');
+                    else cfCards[i].classList.add('hide-right');
+                }
+            }
+        }
+
+        function moveCoverFlow(direction) {
+            cfIndex += direction;
+            if (cfIndex < 0) cfIndex = totalCfSlides - 1;
+            else if (cfIndex >= totalCfSlides) cfIndex = 0;
+            updateCoverFlow();
+        }
+
+        // 4. 마이페이지 (파노라마 슬라이드) 로직
+        let rIndex = 0;
+        const rSlidesToShow = 3; 
+        const rTotalSlides = 5; 
+        let rIsPaused = false;
+        let rAutoPlayInterval;
+
+        function updateRecentSlider() {
+            const track = document.getElementById('recentTrack');
+            const progress = document.getElementById('recentProgress');
+            const slideItem = track.querySelector('.museum-slide');
+            if(slideItem) {
+                const slideWidth = slideItem.offsetWidth; 
+                const gap = 20; 
+                const moveAmount = (slideWidth + gap) * rIndex;
+                track.style.transform = `translateX(-${moveAmount}px)`;
+            }
+            const progPercent = ((rIndex + 1) / (rTotalSlides - rSlidesToShow + 1)) * 100;
+            const finalProg = Math.min(progPercent, 100);
+            if(progress) progress.style.width = `${finalProg}%`;
+        }
+
+        function moveRecentSlide(direction) {
+             const maxIndex = rTotalSlides - rSlidesToShow;
+             rIndex += direction;
+             if (rIndex < 0) rIndex = 0;
+             if (rIndex > maxIndex) rIndex = 0; 
+             updateRecentSlider();
+        }
+
+        function startRecentAutoPlay() {
+            if(rAutoPlayInterval) clearInterval(rAutoPlayInterval);
+            rAutoPlayInterval = setInterval(() => { moveRecentSlide(1); }, 4000);
+        }
+
+        function toggleRecentAutoPlay() {
+            const btnIcon = document.querySelector('#recentPauseBtn i');
+            if (rIsPaused) {
+                rIsPaused = false;
+                startRecentAutoPlay();
+                btnIcon.classList.remove('fa-play');
+                btnIcon.classList.add('fa-pause');
+            } else {
+                rIsPaused = true;
+                clearInterval(rAutoPlayInterval);
+                btnIcon.classList.remove('fa-pause');
+                btnIcon.classList.add('fa-play');
+            }
+        }
+
+        // 5. 기타 페이지 이동 함수들
         function goArchiveHubPage(pageName) {
             const section = document.getElementById('section-archive-hub');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
-            const bread = document.getElementById('breadcrumb');
             if(pageName === 'landing') {
                 document.getElementById('page-hub-landing').classList.add('active');
-                bread.innerHTML = '<span class="current">아카이브</span>';
-                currentArchiveIndex = 0; moveArchiveSlide(0);
+                document.getElementById('breadcrumb').innerHTML = '<span class="current">아카이브</span>';
+                // 커버플로우 초기화
+                setTimeout(updateCoverFlow, 100);
             } else if(pageName === 'people-search') {
                 document.getElementById('page-hub-people-search').classList.add('active');
-                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'landing\')">아카이브</span> <span class="separator">></span> <span class="current">인물 검색</span>';
             } else if(pageName === 'people-detail') {
                 document.getElementById('page-hub-people-detail').classList.add('active');
-                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'landing\')">아카이브</span> <span class="separator">></span> <span class="nav-link" onclick="goArchiveHubPage(\'people-search\')">인물 검색</span> <span class="separator">></span> <span class="current">선조</span>';
             } else if(pageName === 'event-detail') {
                 document.getElementById('page-hub-event-detail').classList.add('active');
-                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'people-detail\')">선조</span> <span class="separator">></span> <span class="current">기축옥사</span>';
             } else if(pageName === 'artifact-search') {
                 document.getElementById('page-hub-artifact-search').classList.add('active');
-                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'landing\')">아카이브</span> <span class="separator">></span> <span class="current">유물 검색</span>';
             } else if(pageName === 'artifact-detail') {
                 document.getElementById('page-hub-artifact-detail').classList.add('active');
-                bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'artifact-search\')">유물 검색</span> <span class="separator">></span> <span class="current">청룡포</span>';
             }
         }
-        function moveArchiveSlide(direction) {
-            const track = document.getElementById('archiveTrack');
-            const indicators = document.querySelectorAll('.indicator');
-            const totalSlides = 4;
-            currentArchiveIndex += direction;
-            if (currentArchiveIndex < 0) currentArchiveIndex = totalSlides - 1;
-            else if (currentArchiveIndex >= totalSlides) currentArchiveIndex = 0;
-            track.style.transform = `translateX(-${currentArchiveIndex * 100}%)`;
-            indicators.forEach((ind, idx) => {
-                if(idx === currentArchiveIndex) ind.classList.add('active');
-                else ind.classList.remove('active');
-            });
-        }
+
         function goArchivePage(pageName) {
             const section = document.getElementById('section-archive');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
@@ -1008,14 +1080,32 @@
             else if(pageName === 'list') document.getElementById('page-archive-list').classList.add('active');
             else if(pageName === 'detail') document.getElementById('page-archive-detail').classList.add('active');
         }
+
         function goRitualScene(step) {
             const section = document.getElementById('section-ritual');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             if(step === 1) document.getElementById('scene-selection').classList.add('active');
-            else if(step === 2) { document.getElementById('scene-ontology-1').classList.add('active'); setTimeout(drawNetwork1, 100); }
-            else if(step === 3) { document.getElementById('scene-ontology-2').classList.add('active'); setTimeout(drawNetwork2, 100); }
-            else if(step === 4) { document.getElementById('scene-ontology-3').classList.add('active'); setTimeout(drawNetwork3, 100); }
+            else if(step === 2) { 
+                document.getElementById('scene-ontology-1').classList.add('active'); 
+                if(typeof drawNetwork1 === 'function') setTimeout(drawNetwork1, 100); 
+            }
+            else if(step === 3) { 
+                document.getElementById('scene-ontology-2').classList.add('active'); 
+                if(typeof drawNetwork2 === 'function') setTimeout(drawNetwork2, 100); 
+            }
+            else if(step === 4) { 
+                document.getElementById('scene-ontology-3').classList.add('active'); 
+                if(typeof drawNetwork3 === 'function') setTimeout(drawNetwork3, 100); 
+            }
         }
+
+        // 초기 실행
+        window.addEventListener('load', () => {
+            updateCoverFlow();
+        });
+        window.addEventListener('resize', () => {
+            updateRecentSlider();
+        });
     </script>
 </body>
 </html>
