@@ -443,7 +443,7 @@ font-weight: 700;
 .action-btn.primary { background: #333; color: #fff; border-color: #333; }
 
 .rest-header { text-align: center; margin-bottom: 50px; }
-.rest-header h2 {font-family :'Joseon100Years';}
+.rest-header h2 {font-family : 'Joseon100Years', serif; }
 
 .rest-layout { display: flex; gap: 40px; }
 .activity-section { flex: 1; }
