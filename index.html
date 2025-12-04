@@ -33,8 +33,7 @@
         </nav>
 
         <div class="user-menu">
-            <span onclick="switchMainTab('record')"><img src="img/archive-box.png" alt="보관함"></span> 
-            <span onclick="switchMainTab('profile')"><img src="img/king-icon.png" alt="왕(프로필)"></span>
+            <span onclick="handleProfileClick()"><img src="img/king-icon.png" alt="프로필"></span>
         </div>
     </header>
 
@@ -702,24 +701,31 @@
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="graphs.js"></script>
     <script>
-        // [NEW] 로그인 처리 함수
-        function handleLogin() {
-            // 1. 입력된 값 가져오기 (프로토타입용 단순 확인)
-            const emailInput = document.querySelector('#section-profile input[type="email"]');
-            const pwInput = document.querySelector('#section-profile input[type="password"]');
-            
-            // 2. 빈칸 체크
-            if (!emailInput.value || !pwInput.value) {
-                alert("이메일과 비밀번호를 모두 입력해주세요.");
-                return;
-            }
+        // [NEW] 로그인 상태 변수 (처음엔 false)
+        let isLoggedIn = false;
 
-            // 3. 로그인 성공 알림 및 페이지 이동
-            alert("로그인 되었습니다! 나의 연구 도구로 이동합니다.");
-            switchMainTab('record'); // '기록' 탭으로 화면 전환
+        // [NEW] 프로필 아이콘 클릭 시 처리
+        function handleProfileClick() {
+            if (isLoggedIn) {
+                // 로그인 상태면 -> 기록(나의 연구 도구) 페이지로 이동
+                switchMainTab('record');
+            } else {
+                // 로그아웃 상태면 -> 로그인 페이지로 이동
+                switchMainTab('profile');
+            }
         }
 
-        // ... (기존 switchMainTab 함수 등 나머지 코드는 그대로 유지) ...
+        // [NEW] 로그인 버튼 클릭 시 (로그인 성공 처리)
+        function handleLogin() {
+            // (간단한 유효성 검사 생략 가능)
+            alert("로그인 되었습니다! 나의 연구 도구로 이동합니다.");
+            
+            isLoggedIn = true; // ★ 로그인 상태로 변경
+            switchMainTab('record'); // 기록 페이지로 이동
+        }
+        
+        // ... (나머지 switchMainTab 등의 기존 함수들은 그대로 유지) ...
+
         let currentArchiveIndex = 0;
         function switchMainTab(tabName) {
             document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active-menu'));
