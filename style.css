@@ -263,6 +263,19 @@ font-weight: 700;
 }
 .media-box h3 { text-align: center; margin-bottom: 20px; font-size: 20px; }
 /* BGM 플레이어 스타일 */
+.media-box bgm-box {
+    background: #fff;
+    padding: 50px; /* 여백 확보 */
+    border-radius: 12px;
+    
+    /* [핵심] 두 박스의 높이를 강제로 똑같이 고정 (원하는 크기로 조절 가능) */
+    height: 1300px; 
+    
+    /* 내부 요소 배치 설정 */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* 살짝 그림자 추가 */
+}
 .bgm-player { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 .current-track { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
 .current-track img { width: 60px; height: 60px; border-radius: 8px; background: #eee; }
@@ -272,6 +285,7 @@ font-weight: 700;
 .viewer-box .viewer-content {
     background: #fff; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
 .viewer-content img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
 .viewer-btn {
     padding: 10px 20px; background: #fff; border: 1px solid #333; border-radius: 30px; cursor: pointer; font-weight: 700;
@@ -411,7 +425,7 @@ font-weight: 700;
 /* 개별 카드 스타일 */
 .coverflow-card {
     position: absolute;
-    width: 300px;
+    width: 400px;
     height: 420px;
     background: #fff;
     border-radius: 20px;
