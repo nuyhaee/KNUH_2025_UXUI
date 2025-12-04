@@ -491,6 +491,128 @@ font-weight: 700;
     transform: translateY(-50px);
 }
 
+/* =========================================
+   [NEW] 마이페이지 (My Page) 스타일
+   ========================================= */
+
+/* 레이아웃 컨테이너 */
+.mypage-inner-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+.mypage-title { font-size: 32px; font-weight: 700; margin-bottom: 30px; }
+
+/* 프로필 카드 */
+.mp-profile-card {
+    display: flex; align-items: center; background: #fff;
+    border: 1px solid #333; border-radius: 12px; padding: 40px; margin-bottom: 60px;
+    position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.mp-profile-img { 
+    width: 120px; height: 120px; border-radius: 50%; overflow: hidden; 
+    border: 3px solid #eee; margin-right: 30px; background: #fff;
+}
+.mp-profile-img img { width: 100%; height: 100%; object-fit: contain; }
+.mp-profile-info h2 { font-size: 28px; margin-bottom: 10px; }
+.mp-profile-info p { color: #666; font-size: 16px; }
+.mp-btn-edit {
+    position: absolute; right: 40px; bottom: 40px;
+    background: #fff; border: 1px solid #333; padding: 10px 20px;
+    border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 14px;
+    transition: 0.2s;
+}
+.mp-btn-edit:hover { background: #f0f0f0; }
+
+/* 섹션 공통 */
+.mp-section { margin-bottom: 80px; }
+.mp-section-header { margin-bottom: 20px; }
+.mp-section-header.row { display: flex; justify-content: space-between; align-items: flex-end; }
+.mp-section-header h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.mp-section-header p { color: #666; font-size: 14px; }
+
+/* 연구 도구 (3단 그리드) */
+.mp-tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.mp-tool-card {
+    background: #fff; border: 1px solid #333; border-radius: 12px; padding: 25px;
+    display: flex; flex-direction: column; height: 320px; /* 높이 고정 */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.03); transition: 0.2s;
+}
+.mp-tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.mp-tool-card h4 { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+
+.mp-list { flex: 1; list-style: none; overflow-y: auto; margin-bottom: 15px; }
+.mp-list li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; color: #444;
+}
+.mp-textarea {
+    flex: 1; width: 100%; border: 1px solid #ddd; border-radius: 8px;
+    padding: 15px; resize: none; margin-bottom: 15px; font-family: "Pretendard";
+}
+
+/* 버튼 스타일들 */
+.mp-btn-outline {
+    width: 100%; padding: 12px; border-radius: 6px; font-weight: 700; cursor: pointer; background: #fff;
+    font-size: 14px; transition: 0.2s;
+}
+.mp-btn-outline.blue { border: 1px solid #5d5aff; color: #5d5aff; }
+.mp-btn-outline.blue:hover { background: #f0f0ff; }
+.mp-btn-outline.red { border: 1px solid #d32f2f; color: #d32f2f; }
+.mp-btn-outline.red:hover { background: #fff0f0; }
+.mp-btn-outline.orange { border: 1px solid #f57c00; color: #f57c00; }
+.mp-btn-outline.orange:hover { background: #fff3e0; }
+
+.mp-btn-group { display: flex; flex-direction: column; gap: 8px; }
+.mp-btn-rounded {
+    border: 1px solid #aaa; background: #fff; padding: 8px 20px;
+    border-radius: 20px; cursor: pointer; font-size: 14px;
+}
+.mp-btn-rounded:hover { border-color: #333; color: #000; }
+
+/* 최근 조회한 의궤 */
+.mp-book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+.mp-book-item { cursor: pointer; }
+.mp-book-img { 
+    width: 100%; aspect-ratio: 3 / 4; background: #eee; border-radius: 8px; 
+    overflow: hidden; margin-bottom: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.mp-book-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.mp-book-item:hover img { transform: scale(1.05); }
+.mp-book-item h4 { font-size: 16px; margin-bottom: 5px; font-weight: 600; }
+.mp-book-item p { font-size: 12px; color: #888; }
+
+/* 코멘트 섹션 (어두운 배경) */
+.mp-comments-section {
+    background: #1a1a1a; color: #fff; padding: 80px 20px; text-align: center;
+    margin-top: 50px;
+}
+.mp-dark-title { font-size: 32px; font-weight: 700; margin-bottom: 40px; color: #fff; }
+.mp-sort-options { margin-bottom: 50px; color: #888; font-size: 14px; }
+.mp-sort-options span { margin: 0 15px; cursor: pointer; }
+.mp-sort-options span.active { color: #fff; font-weight: 700; border-bottom: 1px solid #fff; padding-bottom: 3px; }
+
+.mp-comment-grid {
+    display: flex; justify-content: center; gap: 25px; max-width: 1200px; margin: 0 auto 50px;
+}
+.mp-comment-card {
+    background: #fff; color: #333; border-radius: 12px; padding: 35px;
+    width: 350px; text-align: left; position: relative;
+    display: flex; flex-direction: column;
+}
+.stars { color: #fbc02d; font-size: 18px; margin-bottom: 15px; letter-spacing: 2px; }
+.comment-text { font-size: 15px; line-height: 1.6; color: #444; margin-bottom: 25px; flex: 1; }
+.comment-user { display: flex; align-items: center; gap: 12px; }
+.avatar-circle { width: 40px; height: 40px; background: #ddd; border-radius: 50%; }
+.comment-user strong { display: block; font-size: 14px; }
+.comment-user span { font-size: 12px; color: #888; }
+.quote-mark {
+    position: absolute; top: 20px; right: 25px; font-size: 60px; color: #f5f5f5;
+    font-family: serif; line-height: 0; pointer-events: none;
+}
+
+.mp-dots .dot {
+    display: inline-block; width: 10px; height: 10px; background: #555;
+    border-radius: 50%; margin: 0 5px; cursor: pointer;
+}
+.mp-dots .dot.active { background: #fff; }
+
 /* 3. 왼쪽 배경 이미지 영역 */
 .bg-side-left {
     position: absolute;

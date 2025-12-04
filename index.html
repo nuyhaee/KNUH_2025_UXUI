@@ -7,6 +7,7 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -671,21 +672,18 @@
     </main>
 
     <main id="section-profile" class="main-section container" style="padding:0; max-width:100%;">
-        <div class="login-wrapper">
-            <div class="bg-side-left">
-                <img src="img/login-bg.png" alt="로그인 배경">
-            </div>
-
-            <div class="bg-side-right">
-                <img src="img/login-bg.png" alt="로그인 배경">
-            </div>
+        
+        <div id="view-login" class="login-wrapper">
+            <div class="bg-side-left"><img src="img/login-bg.png" alt="로그인 배경"></div>
+            <div class="bg-side-right"><img src="img/login-bg.png" alt="로그인 배경"></div>
 
             <div class="login-box">
                 <h2>로그인</h2>
                 <div class="input-group"><input type="email" placeholder="이메일 주소"></div>
                 <div class="input-group"><input type="password" placeholder="비밀번호"></div>
                 <div class="login-options"><label><input type="checkbox"> 로그인 상태 유지</label><a href="#">비밀번호 찾기</a></div>
-                <button class="login-btn" onclick="handleLogin()">로그인</button>
+                <button class="login-btn" onclick="doLogin()">Sign in</button>
+                
                 <div class="divider"><span>또는</span></div>
                 <div class="social-login">
                     <button class="social-btn google">G</button>
@@ -694,6 +692,132 @@
                 </div>
             </div>
         </div>
+
+        <div id="view-mypage" style="display: none;"> <div class="mypage-inner-container">
+                <h1 class="mypage-title">마이페이지</h1>
+
+                <section class="mp-profile-card">
+                    <div class="mp-profile-img">
+                        <img src="img/king-icon.png" alt="프로필 이미지">
+                    </div>
+                    <div class="mp-profile-info">
+                        <h2>김하윤</h2>
+                        <p>Lv. 3 초보 관람자 / 歷史 (열사)</p>
+                    </div>
+                    <button class="mp-btn-edit">프로필 수정 <i class="fas fa-arrow-right"></i></button>
+                </section>
+
+                <section class="mp-section">
+                    <div class="mp-section-header">
+                        <h3>나의 연구 도구</h3>
+                        <p>조선 왕실 의궤 원문, 번역, 삽화 이미지를 동시에 탐색하고 나의 연구 자료를 관리하세요.</p>
+                    </div>
+                    
+                    <div class="mp-tools-grid">
+                        <div class="mp-tool-card">
+                            <h4><i class="far fa-heart" style="color:#5d5aff;"></i> 즐겨찾기</h4>
+                            <ul class="mp-list">
+                                <li><span>☆ 정조대왕 능행차 반차도</span> <i class="far fa-map"></i></li>
+                                <li><span>☆ 영조 국장도감의궤</span> <i class="far fa-book"></i></li>
+                                <li><span>☆ 철종 가례도감의궤</span> <i class="far fa-book"></i></li>
+                            </ul>
+                            <button class="mp-btn-outline blue">모두 보기</button>
+                        </div>
+                        <div class="mp-tool-card">
+                            <h4><i class="fas fa-shopping-cart" style="color:#d32f2f;"></i> 장바구니</h4>
+                            <ul class="mp-list">
+                                <li><span><i class="far fa-file-alt"></i> 고종 황제 즉위식 원문</span> <i class="fas fa-shopping-cart"></i></li>
+                                <li><span><i class="far fa-file-alt"></i> 순종 황제 장례식 삽화집</span> <i class="fas fa-shopping-cart"></i></li>
+                            </ul>
+                            <div class="mp-btn-group">
+                                <button class="mp-btn-outline red">모두 보기</button>
+                                <button class="mp-btn-outline red fill"><i class="fas fa-download"></i> 자료 다운로드</button>
+                            </div>
+                        </div>
+                        <div class="mp-tool-card">
+                            <h4><i class="far fa-sticky-note" style="color:#f57c00;"></i> 나의 기록</h4>
+                            <textarea class="mp-textarea" placeholder="나만의 연구 노트를 작성하세요..."></textarea>
+                            <button class="mp-btn-outline orange">저장</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mp-section">
+                    <div class="mp-section-header row">
+                        <div>
+                            <h3>최근 조회한 의궤</h3>
+                            <p>이전에 보았던 의궤를 다시 찾기 위해 검색하는 수고를 덜고 효율적인 학습 및 연구 활동을 지원합니다.</p>
+                        </div>
+                        <button class="mp-btn-rounded">전체 보기</button>
+                    </div>
+
+                    <div class="mp-book-grid">
+                        <div class="mp-book-item">
+                            <div class="mp-book-img"><img src="img/hwaseong.jpg" alt="표지"></div> <h4>화성성역의궤</h4>
+                            <p>2025.07.15 14:30</p>
+                        </div>
+                        <div class="mp-book-item">
+                            <div class="mp-book-img"><img src="img/wedding-book.webp" alt="표지"></div>
+                            <h4>원행을묘정리의궤</h4>
+                            <p>2025.07.15 14:30</p>
+                        </div>
+                        <div class="mp-book-item">
+                            <div class="mp-book-img"><img src="img/ritual.jpg" alt="표지"></div>
+                            <h4>국장도감의궤</h4>
+                            <p>2025.07.15 14:30</p>
+                        </div>
+                        <div class="mp-book-item">
+                            <div class="mp-book-img"><img src="img/food.jpg" alt="표지"></div>
+                            <h4>진찬의궤</h4>
+                            <p>2025.07.15 14:30</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="mp-comments-section">
+                <h2 class="mp-dark-title">마음을 담은 코멘트</h2>
+                <div class="mp-sort-options">
+                    <span>최신순</span>
+                    <span class="active">인기순</span>
+                    <span>추천순</span>
+                </div>
+
+                <div class="mp-comment-grid">
+                    <div class="mp-comment-card">
+                        <div class="stars">★★★★☆</div>
+                        <p class="comment-text">"의궤의 상세한 기록 덕분에 과제를 훌륭하게 마칠 수 있었습니다. 특히 반차도 뷰어가 인상적이에요."</p>
+                        <div class="comment-user">
+                            <div class="avatar-circle"></div>
+                            <div><strong>김역사</strong><span>대학생</span></div>
+                        </div>
+                        <div class="quote-mark">“</div>
+                    </div>
+                    <div class="mp-comment-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="comment-text">"아이들과 함께 보기에 너무 좋습니다. 3D 모델링으로 옷을 돌려보는 것을 아이가 가장 좋아해요."</p>
+                        <div class="comment-user">
+                            <div class="avatar-circle" style="background:#ffcc80;"></div>
+                            <div><strong>박맘</strong><span>학부모</span></div>
+                        </div>
+                        <div class="quote-mark">“</div>
+                    </div>
+                    <div class="mp-comment-card">
+                        <div class="stars">★★★★☆</div>
+                        <p class="comment-text">"자료 정리가 매우 체계적입니다. 연구 도구 기능도 유용하게 잘 쓰고 있습니다."</p>
+                        <div class="comment-user">
+                            <div class="avatar-circle" style="background:#81d4fa;"></div>
+                            <div><strong>이연구</strong><span>대학원생</span></div>
+                        </div>
+                        <div class="quote-mark">“</div>
+                    </div>
+                </div>
+                
+                <div class="mp-dots">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>@ 2025-2학기 UXUI디자인개론 프로젝트 _ 차다빈, 이아현, 박이슬 </footer>
@@ -701,19 +825,6 @@
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="graphs.js"></script>
     <script>
-        // [NEW] 로그인 상태 변수 (처음엔 false)
-        let isLoggedIn = false;
-
-        // [NEW] 프로필 아이콘 클릭 시 처리
-        function handleProfileClick() {
-            if (isLoggedIn) {
-                // 로그인 상태면 -> 기록(나의 연구 도구) 페이지로 이동
-                switchMainTab('record');
-            } else {
-                // 로그아웃 상태면 -> 로그인 페이지로 이동
-                switchMainTab('profile');
-            }
-        }
 
         // [NEW] 로그인 버튼 클릭 시 (로그인 성공 처리)
         function handleLogin() {
@@ -724,7 +835,19 @@
             switchMainTab('record'); // 기록 페이지로 이동
         }
         
-        // ... (나머지 switchMainTab 등의 기존 함수들은 그대로 유지) ...
+       // [NEW] 로그인 시 마이페이지로 화면 전환하는 함수
+        function doLogin() {
+            // 1. 로그인 입력폼 숨기기
+            document.getElementById('view-login').style.display = 'none';
+            // 2. 마이페이지 내용 보이기
+            document.getElementById('view-mypage').style.display = 'block';
+            
+            // 3. (선택사항) 상단의 로그인 메뉴 아이콘 등을 '로그인됨' 상태로 변경하려면 여기서 처리
+            // 예: document.querySelector('.user-menu img').src = 'img/logged-in-icon.png';
+            
+            // 4. 화면 최상단으로 이동
+            window.scrollTo(0, 0);
+        }
 
         let currentArchiveIndex = 0;
         function switchMainTab(tabName) {
