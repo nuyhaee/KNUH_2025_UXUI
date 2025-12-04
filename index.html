@@ -221,39 +221,72 @@
     <main id="section-archive-hub" class="main-section container">
         
         <div id="page-hub-landing" class="sub-page active fade-in">
-            <div class="search-container" style="margin-bottom: 60px;">
+            
+            <div class="search-container" style="margin-bottom: 40px;">
                 <span class="search-label">아카이브 검색</span>
                 <input type="text" placeholder="인물, 사건, 유물, 의례 검색">
                 <span style="cursor:pointer; font-size: 24px;">🔍</span>
             </div>
 
-            <div class="archive-carousel-container">
-                <button class="carousel-arrow prev" onclick="moveArchiveSlide(-1)">❮</button>
-                <div class="archive-track-container">
-                    <div class="archive-track" id="archiveTrack">
-                        <div class="hub-slide-card" onclick="goArchiveHubPage('people-search')">
-                            <div class="hub-slide-img"><img src="img/portrait.png" alt="어진(인물)"></div>
-                            <div class="hub-slide-info"><h3>인물</h3><p>조선 왕실의 인물들을 만나며<br>시대의 위엄과 품격을 느껴보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
+            <div class="archive-slider-section">
+                <div class="coverflow-container">
+                    
+                    <div class="coverflow-card" onclick="goArchiveHubPage('people-search')" data-index="0">
+                        <div class="card-image">
+                            <img src="img/portrait.png" alt="인물">
                         </div>
-                        <div class="hub-slide-card" onclick="goArchiveHubPage('artifact-search')">
-                            <div class="hub-slide-img"><img src="img/royal-seal.jpg" alt="어보(유물)"></div>
-                            <div class="hub-slide-info"><h3>의상 및 유물</h3><p>화려한 왕실 의상과 정교한 유물을 통해<br>조선의 문화와 예술을 감상해보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
-                        </div>
-                        <div class="hub-slide-card">
-                            <div class="hub-slide-img"><img src="img/ritual.jpg" alt="의례(행렬)"></div>
-                            <div class="hub-slide-info"><h3>행렬 및 음악</h3><p>왕실 행렬과 궁중 음악을 감상하며,<br>위엄과 아악의 아름다움에 빠져보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
-                        </div>
-                        <div class="hub-slide-card">
-                            <div class="hub-slide-img"><img src="img/food.jpg" alt="음식"></div>
-                            <div class="hub-slide-info"><h3>궁중 음식</h3><p>정갈한 궁중 음식을 통해<br>왕실의 식문화를 체험해보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
+                        <div class="card-text">
+                            <h3>인물 (人物)</h3>
+                            <p>조선 왕실의 인물들을 만나며<br>시대의 위엄을 느껴보세요.</p>
+                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </div>
+
+                    <div class="coverflow-card" onclick="goArchiveHubPage('artifact-search')" data-index="1">
+                        <div class="card-image">
+                            <img src="img/royal-seal.jpg" alt="유물">
+                        </div>
+                        <div class="card-text">
+                            <h3>의상 및 유물</h3>
+                            <p>화려한 의상과 정교한 유물을<br>감상해보세요.</p>
+                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="coverflow-card" onclick="switchMainTab('ritual')" data-index="2">
+                        <div class="card-image">
+                            <img src="img/ritual.jpg" alt="행렬">
+                        </div>
+                        <div class="card-text">
+                            <h3>행렬 및 음악</h3>
+                            <p>장엄한 왕실 행렬과 음악을<br>체험해보세요.</p>
+                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="coverflow-card" onclick="alert('준비 중입니다.')" data-index="3">
+                        <div class="card-image">
+                            <img src="img/food.jpg" alt="음식">
+                        </div>
+                        <div class="card-text">
+                            <h3>궁중 음식</h3>
+                            <p>정갈한 왕실의 식문화를<br>만나보세요.</p>
+                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
                 </div>
-                <button class="carousel-arrow next" onclick="moveArchiveSlide(1)">❯</button>
-            </div>
-            
-            <div class="carousel-indicators">
-                <span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span>
+
+                <div class="slider-controls">
+                    <button class="nav-btn prev" onclick="moveCoverFlow(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="nav-btn next" onclick="moveCoverFlow(1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
         </div>
 
@@ -848,7 +881,73 @@
             // 4. 화면 최상단으로 이동
             window.scrollTo(0, 0);
         }
+// [수정됨] 커버 플로우 슬라이드 로직
+        let cfIndex = 0; // 현재 활성화된 인덱스
+        const cfCards = document.querySelectorAll('.coverflow-card');
+        const cfDots = document.querySelectorAll('.slider-dots .dot');
+        const totalCfSlides = cfCards.length;
 
+        // 초기 실행
+        updateCoverFlow();
+
+        function updateCoverFlow() {
+            // 모든 카드 초기화 (클래스 제거)
+            cfCards.forEach(card => {
+                card.classList.remove('active', 'prev', 'next', 'hide-left', 'hide-right');
+            });
+            
+            // 인디케이터 초기화
+            cfDots.forEach(dot => dot.classList.remove('active'));
+            if(cfDots[cfIndex]) cfDots[cfIndex].classList.add('active');
+
+            // 1. 현재(Active) 카드 설정
+            cfCards[cfIndex].classList.add('active');
+
+            // 2. 이전(Prev) 카드 설정
+            // (인덱스가 0이면 마지막 카드가 이전 카드가 됨 - 순환)
+            let prevIndex = (cfIndex - 1 + totalCfSlides) % totalCfSlides;
+            cfCards[prevIndex].classList.add('prev');
+
+            // 3. 다음(Next) 카드 설정
+            // (인덱스가 마지막이면 첫번째 카드가 다음 카드가 됨 - 순환)
+            let nextIndex = (cfIndex + 1) % totalCfSlides;
+            cfCards[nextIndex].classList.add('next');
+
+            // 4. 나머지 카드 처리 (숨김)
+            // 카드가 4개뿐이므로 active, prev, next를 제외한 하나는 숨겨야 함
+            for(let i=0; i < totalCfSlides; i++) {
+                if(i !== cfIndex && i !== prevIndex && i !== nextIndex) {
+                    // 현재 위치보다 작으면 왼쪽으로 숨기고, 크면 오른쪽으로 숨김
+                    // 순환 구조라 단순 비교는 어렵지만, 4개 기준으로는 
+                    // active 맞은편 카드를 적절히 숨겨주면 됩니다.
+                    if (i < cfIndex) card.classList.add('hide-left');
+                    else card.classList.add('hide-right');
+                    
+                    // (간단히 모두 hide-right로 보내도 무방함, 어차피 안보임)
+                    cfCards[i].classList.add('hide-right'); 
+                }
+            }
+        }
+
+        // 버튼 클릭 시 이동 함수
+        function moveCoverFlow(direction) {
+            cfIndex += direction;
+            
+            // 인덱스 순환 처리
+            if (cfIndex < 0) cfIndex = totalCfSlides - 1;
+            else if (cfIndex >= totalCfSlides) cfIndex = 0;
+            
+            updateCoverFlow();
+        }
+
+        // 페이지 로드 시에도 초기화 (안전을 위해)
+        window.addEventListener('load', () => {
+             // 0.1초 뒤 실행 (DOM 렌더링 확보)
+             setTimeout(updateCoverFlow, 100);
+        });
+        
+        // 아카이브 탭 클릭 시에도 초기화 (탭 전환 시 깨짐 방지)
+        // 기존 switchMainTab 함수 내 'archive-hub' 분기에 추가 권장
         let currentArchiveIndex = 0;
         function switchMainTab(tabName) {
             document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active-menu'));
