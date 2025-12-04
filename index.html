@@ -368,16 +368,20 @@
             
             <div class="layout-split">
                 <aside class="sidebar">
-                    <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;">
-                        <span style="font-weight:700; color:#888;">상세검색</span> <span style="font-size:18px; font-weight:700;">검색필터</span>
-                    </div>
+                    <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;"><span style="font-size:18px; font-weight:700;">검색필터</span></div>
                     <div class="filter-section">
                         <span class="filter-title">자료 유형</span>
+                            <div class="filter-item"><input type="checkbox" >인물</div>
+                            <div class="filter-item"><input type="checkbox" checked>의상 및 유물</div>
+                            <div class="filter-item"><input type="checkbox">행렬 및 음악</div>
+                            <div class="filter-item"><input type="checkbox">궁중음식</div>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-title">자료 형태</span>
                         <div class="filter-item"><input type="checkbox" checked> 사진</div>
-                        <div class="filter-item"><input type="checkbox"> 3D 모델</div>
+                        <div class="filter-item"><input type="checkbox"> 3D모델</div>
                     </div>
                 </aside>
-
                 <main class="result-grid" style="flex:1;">
                     <div class="item-card" onclick="goArchiveHubPage('artifact-detail')">
                         <div class="item-img"><span>의상</span><img src="img/blue-robe.png" alt="청룡포" style="width:100%; height:100%; object-fit:cover;"></div>
@@ -452,6 +456,9 @@
             </div>
             <div class="layout-split">
                 <aside class="sidebar">
+                    <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;">
+                        <span style="font-size:18px; font-weight:700;">검색필터</span>
+                    </div>
                     <div class="filter-section">
                         <span class="filter-title">자료 유형</span>
                         <div class="filter-item"><input type="checkbox" checked> 사진 (1,234)</div>
