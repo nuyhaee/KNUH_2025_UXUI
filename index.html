@@ -34,7 +34,7 @@
         </nav>
 
         <div class="user-menu">
-            <span onclick="handleProfileClick()"><img src="img/king-icon.png" alt="프로필"></span>
+            <span onclick="switchMainTab('profile')" style="cursor: pointer;"><img src="img/king-icon.png" alt="프로필"></span>
         </div>
     </header>
 
@@ -825,49 +825,88 @@
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="graphs.js"></script>
     <script>
+        // ★ 로그인 상태를 저장하는 변수 (기본값: false)
+        let isLoggedIn = false;
 
-        // [NEW] 로그인 버튼 클릭 시 (로그인 성공 처리)
-        function handleLogin() {
-            // (간단한 유효성 검사 생략 가능)
-            alert("로그인 되었습니다! 나의 연구 도구로 이동합니다.");
-            
-            isLoggedIn = true; // ★ 로그인 상태로 변경
-            switchMainTab('record'); // 기록 페이지로 이동
-        }
-        
-       // [NEW] 로그인 시 마이페이지로 화면 전환하는 함수
+        // [기능] 로그인 버튼 클릭 시 실행
         function doLogin() {
-            // 1. 로그인 입력폼 숨기기
+            // 1. 상태를 로그인됨(true)으로 변경
+            isLoggedIn = true;
+            
+            // 2. 로그인 화면 숨기고 마이페이지 보여주기
             document.getElementById('view-login').style.display = 'none';
-            // 2. 마이페이지 내용 보이기
             document.getElementById('view-mypage').style.display = 'block';
             
-            // 3. (선택사항) 상단의 로그인 메뉴 아이콘 등을 '로그인됨' 상태로 변경하려면 여기서 처리
-            // 예: document.querySelector('.user-menu img').src = 'img/logged-in-icon.png';
-            
+            // 3. 브레드크럼(경로) 텍스트 변경
+            document.getElementById('breadcrumb').innerHTML = '<span class="current">마이페이지</span>';
+
             // 4. 화면 최상단으로 이동
             window.scrollTo(0, 0);
+            
+            // 알림 (선택사항)
+            // alert("환영합니다! 마이페이지로 이동합니다.");
         }
 
         let currentArchiveIndex = 0;
+
+        // [기능] 메인 탭(메뉴) 전환 함수
         function switchMainTab(tabName) {
+            // 1. 상단 메뉴 활성화 스타일 처리
             document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active-menu'));
-            if(document.getElementById('menu-' + tabName)) document.getElementById('menu-' + tabName).classList.add('active-menu');
+            if(document.getElementById('menu-' + tabName)) {
+                document.getElementById('menu-' + tabName).classList.add('active-menu');
+            }
+
+            // 2. 메인 섹션 보여주기/숨기기
             document.querySelectorAll('.main-section').forEach(section => section.classList.remove('active-section'));
             document.getElementById('section-' + tabName).classList.add('active-section');
+
+            // 3. 브레드크럼 및 페이지별 초기화 로직
             const bread = document.getElementById('breadcrumb');
-            if(tabName === 'home') bread.innerHTML = '<span class="current">홈</span>';
-            else if(tabName === 'archive-hub') { bread.innerHTML = '<span class="current">아카이브</span>'; goArchiveHubPage('landing'); }
-            else if(tabName === 'archive') { bread.innerHTML = '<span class="current">디지털 자료실</span>'; goArchivePage('landing'); }
-            else if(tabName === 'ritual') { bread.innerHTML = '<span class="current">의례 이야기</span>'; goRitualScene(1); }
-            else if(tabName === 'record') bread.innerHTML = '<span class="current">나의 연구 도구</span>';
-            else if(tabName === 'rest') bread.innerHTML = '<span class="current">쉼터</span>';
-            else if(tabName === 'profile') bread.innerHTML = '<span class="current">로그인</span>';
+
+            if(tabName === 'home') {
+                bread.innerHTML = '<span class="current">홈</span>';
+            } 
+            else if(tabName === 'archive-hub') { 
+                bread.innerHTML = '<span class="current">아카이브</span>'; 
+                goArchiveHubPage('landing'); 
+            }
+            else if(tabName === 'archive') { 
+                bread.innerHTML = '<span class="current">디지털 자료실</span>'; 
+                goArchivePage('landing'); 
+            }
+            else if(tabName === 'ritual') { 
+                bread.innerHTML = '<span class="current">의례 이야기</span>'; 
+                goRitualScene(1); 
+            }
+            else if(tabName === 'record') {
+                bread.innerHTML = '<span class="current">나의 연구 도구</span>';
+            }
+            else if(tabName === 'rest') {
+                bread.innerHTML = '<span class="current">쉼터</span>';
+            }
+            else if(tabName === 'profile') {
+                // ★ 핵심 수정: 로그인 여부에 따라 보여줄 화면 결정
+                if (isLoggedIn) {
+                    // 로그인 된 상태라면 -> 마이페이지 보이기
+                    document.getElementById('view-login').style.display = 'none';
+                    document.getElementById('view-mypage').style.display = 'block';
+                    bread.innerHTML = '<span class="current">마이페이지</span>';
+                } else {
+                    // 로그인 안 된 상태라면 -> 로그인 창 보이기
+                    document.getElementById('view-login').style.display = 'flex'; // flex로 해야 중앙 정렬 유지됨
+                    document.getElementById('view-mypage').style.display = 'none';
+                    bread.innerHTML = '<span class="current">로그인</span>';
+                }
+            }
         }
+
+        // [아카이브 허브 페이지 이동]
         function goArchiveHubPage(pageName) {
             const section = document.getElementById('section-archive-hub');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             const bread = document.getElementById('breadcrumb');
+            
             if(pageName === 'landing') {
                 document.getElementById('page-hub-landing').classList.add('active');
                 bread.innerHTML = '<span class="current">아카이브</span>';
@@ -889,6 +928,8 @@
                 bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'artifact-search\')">유물 검색</span> <span class="separator">></span> <span class="current">청룡포</span>';
             }
         }
+
+        // [슬라이드 이동]
         function moveArchiveSlide(direction) {
             const track = document.getElementById('archiveTrack');
             const indicators = document.querySelectorAll('.indicator');
@@ -902,6 +943,8 @@
                 else ind.classList.remove('active');
             });
         }
+
+        // [디지털 자료실 페이지 이동]
         function goArchivePage(pageName) {
             const section = document.getElementById('section-archive');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
@@ -909,13 +952,25 @@
             else if(pageName === 'list') document.getElementById('page-archive-list').classList.add('active');
             else if(pageName === 'detail') document.getElementById('page-archive-detail').classList.add('active');
         }
+
+        // [의례 이야기 씬 이동 (네트워크 그래프)]
         function goRitualScene(step) {
             const section = document.getElementById('section-ritual');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             if(step === 1) document.getElementById('scene-selection').classList.add('active');
-            else if(step === 2) { document.getElementById('scene-ontology-1').classList.add('active'); setTimeout(drawNetwork1, 100); }
-            else if(step === 3) { document.getElementById('scene-ontology-2').classList.add('active'); setTimeout(drawNetwork2, 100); }
-            else if(step === 4) { document.getElementById('scene-ontology-3').classList.add('active'); setTimeout(drawNetwork3, 100); }
+            else if(step === 2) { 
+                document.getElementById('scene-ontology-1').classList.add('active'); 
+                // graphs.js에 정의된 그리기 함수가 있다면 실행 (오류 방지를 위해 try-catch 혹은 존재 여부 체크)
+                if(typeof drawNetwork1 === 'function') setTimeout(drawNetwork1, 100); 
+            }
+            else if(step === 3) { 
+                document.getElementById('scene-ontology-2').classList.add('active'); 
+                if(typeof drawNetwork2 === 'function') setTimeout(drawNetwork2, 100); 
+            }
+            else if(step === 4) { 
+                document.getElementById('scene-ontology-3').classList.add('active'); 
+                if(typeof drawNetwork3 === 'function') setTimeout(drawNetwork3, 100); 
+            }
         }
     </script>
 </body>
