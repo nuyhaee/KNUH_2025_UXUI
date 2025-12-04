@@ -34,7 +34,7 @@
         </nav>
 
         <div class="user-menu">
-            <span onclick="switchMainTab('profile')" style="cursor: pointer;"><img src="img/king-icon.png" alt="프로필"></span>
+            <span onclick="handleProfileClick()"><img src="img/king-icon.png" alt="프로필"></span>
         </div>
     </header>
 
@@ -221,75 +221,41 @@
     <main id="section-archive-hub" class="main-section container">
         
         <div id="page-hub-landing" class="sub-page active fade-in">
-            
-            <div class="search-container" style="margin-bottom: 40px;">
+            <div class="search-container" style="margin-bottom: 60px;">
                 <span class="search-label">아카이브 검색</span>
                 <input type="text" placeholder="인물, 사건, 유물, 의례 검색">
                 <span style="cursor:pointer; font-size: 24px;">🔍</span>
             </div>
 
-            <div class="archive-slider-section">
-                <div class="coverflow-container">
-                    
-                    <div class="coverflow-card" onclick="goArchiveHubPage('people-search')" data-index="0">
-                        <div class="card-image">
-                            <img src="img/portrait.png" alt="인물">
+            <div class="archive-carousel-container">
+                <button class="carousel-arrow prev" onclick="moveArchiveSlide(-1)">❮</button>
+                <div class="archive-track-container">
+                    <div class="archive-track" id="archiveTrack">
+                        <div class="hub-slide-card" onclick="goArchiveHubPage('people-search')">
+                            <div class="hub-slide-img"><img src="img/portrait.png" alt="어진(인물)"></div>
+                            <div class="hub-slide-info"><h3>인물</h3><p>조선 왕실의 인물들을 만나며<br>시대의 위엄과 품격을 느껴보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
                         </div>
-                        <div class="card-text">
-                            <h3>인물 (人物)</h3>
-                            <p>조선 왕실의 인물들을 만나며<br>시대의 위엄을 느껴보세요.</p>
-                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
+                        <div class="hub-slide-card" onclick="goArchiveHubPage('artifact-search')">
+                            <div class="hub-slide-img"><img src="img/royal-seal.jpg" alt="어보(유물)"></div>
+                            <div class="hub-slide-info"><h3>의상 및 유물</h3><p>화려한 왕실 의상과 정교한 유물을 통해<br>조선의 문화와 예술을 감상해보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
                         </div>
-                    </div>
-
-                    <div class="coverflow-card" onclick="goArchiveHubPage('artifact-search')" data-index="1">
-                        <div class="card-image">
-                            <img src="img/royal-seal.jpg" alt="유물">
+                        <div class="hub-slide-card">
+                            <div class="hub-slide-img"><img src="img/ritual.jpg" alt="의례(행렬)"></div>
+                            <div class="hub-slide-info"><h3>행렬 및 음악</h3><p>왕실 행렬과 궁중 음악을 감상하며,<br>위엄과 아악의 아름다움에 빠져보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
                         </div>
-                        <div class="card-text">
-                            <h3>의상 및 유물</h3>
-                            <p>화려한 의상과 정교한 유물을<br>감상해보세요.</p>
-                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
+                        <div class="hub-slide-card">
+                            <div class="hub-slide-img"><img src="img/food.jpg" alt="음식"></div>
+                            <div class="hub-slide-info"><h3>궁중 음식</h3><p>정갈한 궁중 음식을 통해<br>왕실의 식문화를 체험해보세요.</p><button class="hub-btn">자세히 살펴보기 →</button></div>
                         </div>
                     </div>
-
-                    <div class="coverflow-card" onclick="switchMainTab('ritual')" data-index="2">
-                        <div class="card-image">
-                            <img src="img/ritual.jpg" alt="행렬">
-                        </div>
-                        <div class="card-text">
-                            <h3>행렬 및 음악</h3>
-                            <p>장엄한 왕실 행렬과 음악을<br>체험해보세요.</p>
-                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </div>
-
-                    <div class="coverflow-card" onclick="alert('준비 중입니다.')" data-index="3">
-                        <div class="card-image">
-                            <img src="img/food.jpg" alt="음식">
-                        </div>
-                        <div class="card-text">
-                            <h3>궁중 음식</h3>
-                            <p>정갈한 왕실의 식문화를<br>만나보세요.</p>
-                            <span class="btn-go">탐색하기 <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </div>
-
                 </div>
-
-                <div class="slider-controls">
-                    <button class="nav-btn prev" onclick="moveCoverFlow(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <div class="slider-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="nav-btn next" onclick="moveCoverFlow(1)"><i class="fas fa-chevron-right"></i></button>
-                </div>
+                <button class="carousel-arrow next" onclick="moveArchiveSlide(1)">❯</button>
+            </div>
+            
+            <div class="carousel-indicators">
+                <span class="indicator active"></span><span class="indicator"></span><span class="indicator"></span><span class="indicator"></span>
             </div>
         </div>
-
 
         <div id="page-hub-people-search" class="sub-page fade-in">
             <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('landing')" class="back-btn">← 아카이브 홈</button></div>
@@ -678,234 +644,31 @@
         </div>
     </main>
 
-    <main id="section-rest" class="main-section container" style="padding-top:0;">
-        
-        <div class="comm-hero-wrapper">
-            <div class="comm-hero-content">
-                <h1>조선왕조의궤 아카이브 커뮤니티에<br>오신 것을 환영합니다.</h1>
-                <p>조선 왕조의 빛나는 역사와 문화를 탐험하고, 지식을 나누며, 함께 성장하는 공간입니다.</p>
-            </div>
+    <main id="section-rest" class="main-section container">
+         <div class="rest-header">
+            <h2>조선왕조의궤 아카이브 커뮤니티에 오신 것을 환영합니다.</h2>
+            <p>조선 왕조의 빛나는 역사와 문화를 탐험하고, 지식을 나누며 함께 성장하는 공간입니다.</p>
         </div>
-
-        <div class="comm-container" style="margin-bottom: 60px;">
-            <h3 class="comm-section-title">주요 커뮤니티 활동</h3>
-            <div class="comm-activities-grid">
-                <div class="comm-act-item">
-                    <div class="comm-act-icon green"><i class="fas fa-users"></i></div>
-                    <h4>토론 포럼</h4>
-                    <p>조선 시대 학자들처럼 깊이 있는<br>토론에 참여해보세요.</p>
-                </div>
-                <div class="comm-act-item">
-                    <div class="comm-act-icon red"><i class="fas fa-star"></i></div>
-                    <h4>퀴즈 도전</h4>
-                    <p>조선 왕조와 문화에 대한 지식을<br>시험하고 순위를 올려보세요.</p>
-                </div>
-                <div class="comm-act-item">
-                    <div class="comm-act-icon blue"><i class="fas fa-puzzle-piece"></i></div>
-                    <h4>틀린 그림 찾기</h4>
-                    <p>의궤 그림을 자세히 보고 틀린 그림을<br>찾아보세요.</p>
+        <div class="rest-layout">
+            <div class="activity-section">
+                <h3 style="margin-bottom:20px;">주요 커뮤니티 활동</h3>
+                <div class="activity-grid">
+                    <div class="activity-card"><div class="act-icon">🗣️</div><h4>토론 포럼</h4><p>자유롭게 의견을 나누세요</p></div>
+                    <div class="activity-card"><div class="act-icon">🧩</div><h4>퀴즈 도전</h4><p>역사 지식을 테스트해보세요</p></div>
+                    <div class="activity-card"><div class="act-icon">🔍</div><h4>틀린 그림 찾기</h4><p>틀린 곳을 찾아라!</p></div>
                 </div>
             </div>
+            <aside class="rest-sidebar">
+                <div class="ranking-box" style="margin-bottom:30px;">
+                    <h3>🏆 퀴즈 순위표</h3>
+                    <ul class="rank-list">
+                        <li><span>1. 지식 김군</span> <span>1250점</span></li>
+                        <li><span>2. 조선탐험가</span> <span>1180점</span></li>
+                        <li><span>3. 역사덕후</span> <span>1100점</span></li>
+                    </ul>
+                </div>
+            </aside>
         </div>
-
-
-        <div class="comm-container" style="margin-bottom: 80px; margin-top: 60px;">
-            <div class="comm-header-row" style="justify-content: center; flex-direction: column; margin-bottom: 40px;">
-                <h3 class="comm-section-title">조선 왕실의 이야기</h3>
-                <p class="comm-section-desc" style="margin-bottom:0;">깊이 있는 역사 지식부터 흥미로운 뒷이야기까지, 엄선된 콘텐츠를 만나보세요.</p>
-            </div>
-
-            <div class="comm-stories-grid">
-                <div class="story-card">
-                    <div class="story-img">
-                        <span class="story-tag yellow">특별전시</span>
-                        <img src="img/portrait.png" alt="어진">
-                    </div>
-                    <div class="story-content">
-                        <h4>조선 왕실의 숨결, 어진 특별전</h4>
-                        <p>역대 왕들의 어진을 통해 조선 왕실의 역사와 정신을 느껴보세요.</p>
-                        <div class="story-meta">
-                            <span><i class="far fa-eye"></i> 1245</span>
-                            <span><i class="far fa-comment-alt"></i> 32</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-img">
-                        <span class="story-tag beige">강좌</span>
-                        <img src="img/wedding-book.webp" alt="고문서">
-                    </div>
-                    <div class="story-content">
-                        <h4>고문서 해독 초급 강좌</h4>
-                        <p>조선 시대 고문서 읽기의 첫걸음! 전문가와 함께하는 한문 해독.</p>
-                        <div class="story-meta">
-                            <span><i class="far fa-eye"></i> 987</span>
-                            <span><i class="far fa-comment-alt"></i> 15</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-img">
-                        <span class="story-tag brown">공예</span>
-                        <img src="img/food.jpg" alt="도자기">
-                    </div>
-                    <div class="story-content">
-                        <h4>왕실 도자기의 미학</h4>
-                        <p>조선 왕실에서 사용되었던 도자기의 역사와 아름다움을 탐구합니다.</p>
-                        <div class="story-meta">
-                            <span><i class="far fa-eye"></i> 765</span>
-                            <span><i class="far fa-comment-alt"></i> 10</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="story-card">
-                    <div class="story-img">
-                        <span class="story-tag green">탐방</span>
-                        <img src="img/hwaseong.jpg" alt="정원">
-                    </div>
-                    <div class="story-content">
-                        <h4>조선 시대 궁궐 정원 탐방기</h4>
-                        <p>창덕궁 후원 등 조선 시대 왕들이 거닐던 아름다운 정원을 직접 방문하고...</p>
-                        <div class="story-meta">
-                            <span><i class="far fa-eye"></i> 1530</span>
-                            <span><i class="far fa-comment-alt"></i> 45</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <div style="text-align:center; margin-top:40px;">
-                <button class="comm-orange-btn">더 많은 콘텐츠 보기</button>
-            </div>
-        </div>
-
-        <div class="comm-container comm-split-row">
-            <div class="comm-left-panel">
-                <div class="comm-header-row">
-                    <h3 class="comm-sub-title">최근 토론</h3>
-                    <button class="comm-text-btn">모든 토론 보기 →</button>
-                </div>
-                
-                <div class="comm-discuss-card">
-                    <div class="cd-header">
-                        <div class="cd-avatar" style="background-color:#e3f2fd;"></div>
-                        <div class="cd-meta"><strong>김철수</strong><span>2시간 전</span></div>
-                    </div>
-                    <h4 class="cd-title">조선 시대 의례 복식 연구에 대한 의견</h4>
-                    <p class="cd-snippet">최근 발표된 조선 시대 의례 복식 연구 논문에 대해 여러 의견이 있습니다. 특히 관복의 색상과 재질에 대한 해석이 흥미롭습니다...</p>
-                    <div class="cd-footer">
-                        <span><i class="far fa-heart"></i> 15</span>
-                        <span><i class="far fa-comment"></i> 8</span>
-                    </div>
-                </div>
-
-                <div class="comm-discuss-card">
-                    <div class="cd-header">
-                        <div class="cd-avatar" style="background-color:#ffe0b2;"></div>
-                        <div class="cd-meta"><strong>이지혜</strong><span>5시간 전</span></div>
-                    </div>
-                    <h4 class="cd-title">세종대왕의 한글 창제 정신 토론</h4>
-                    <p class="cd-snippet">세종대왕께서 한글을 창제하신 깊은 뜻과 백성을 사랑하는 마음에 대해 함께 이야기하고 싶습니다...</p>
-                    <div class="cd-footer">
-                        <span><i class="far fa-heart"></i> 22</span>
-                        <span><i class="far fa-comment"></i> 12</span>
-                    </div>
-                </div>
-
-                <div class="comm-discuss-card">
-                    <div class="cd-header">
-                        <div class="cd-avatar" style="background-color:#e8f5e9;"></div>
-                        <div class="cd-meta"><strong>박정우</strong><span>1일 전</span></div>
-                    </div>
-                    <h4 class="cd-title">조선 시대 과학 기술 발전상</h4>
-                    <p class="cd-snippet">측우기, 혼천의 등 조선 시대의 뛰어난 과학 기술 발전에 대해 의견을 나눕니다...</p>
-                    <div class="cd-footer">
-                        <span><i class="far fa-heart"></i> 30</span>
-                        <span><i class="far fa-comment"></i> 18</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="comm-right-panel">
-                <div class="comm-tags-box">
-                    <h3 class="comm-sub-title">인기 태그</h3>
-                    <div class="comm-tags">
-                        <span class="tag-pill">#조선왕조실록</span>
-                        <span class="tag-pill">#세종대왕</span>
-                        <span class="tag-pill">#궁중문화</span>
-                        <span class="tag-pill">#한글</span>
-                        <span class="tag-pill">#역사</span>
-                        <span class="tag-pill">#과학기술</span>
-                        <span class="tag-pill">#음식문화</span>
-                        <span class="tag-pill">#예술</span>
-                        <span class="tag-pill">#실학</span>
-                        <span class="tag-pill">#인물탐구</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="comm-game-zone-bg">
-            <div class="comm-container comm-split-row">
-                
-                <div class="comm-left-panel">
-                    <h3 class="comm-section-title" style="text-align:left; margin-bottom:20px;">조선 왕실 기록물: 다른 그림 찾기</h3>
-                    
-                    <div class="game-ui-container">
-                        <div class="game-top-bar">
-                            <div class="game-stats-simple">
-                                <span>찾은 차이점: <strong>3/5</strong></span>
-                                <span>남은 힌트: <strong>2</strong></span>
-                                <span>시간: <strong>05:15</strong></span>
-                            </div>
-                            <div class="game-actions-simple">
-                                <button class="game-btn-s blue"><i class="far fa-lightbulb"></i> 힌트</button>
-                                <button class="game-btn-s green"><i class="fas fa-redo"></i> 재시작</button>
-                            </div>
-                        </div>
-
-                        <div class="game-images-row">
-                            <div class="game-img-box"><img src="img/royal-seal.jpg" alt="원본"><span class="img-label">원본</span></div>
-                            <div class="game-img-box"><img src="img/royal-seal.jpg" alt="비교본"><span class="img-label">비교본</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="comm-right-panel">
-                    <div class="comm-rank-box" style="height: 100%;"> <h3 class="comm-sub-title">퀴즈 순위표</h3>
-                        <ul class="comm-rank-list">
-                            <li>
-                                <span class="rank-num first">1</span>
-                                <div class="rank-user"><strong>지식왕김군</strong><span>1250 점</span></div>
-                                <i class="fas fa-trophy" style="color:gold;"></i>
-                            </li>
-                            <li>
-                                <span class="rank-num">2</span>
-                                <div class="rank-user"><strong>조선탐험가</strong><span>1180 점</span></div>
-                                <i class="fas fa-medal" style="color:silver;"></i>
-                            </li>
-                            <li>
-                                <span class="rank-num">3</span>
-                                <div class="rank-user"><strong>역사덕후</strong><span>1020 점</span></div>
-                                <i class="fas fa-medal" style="color:#cd7f32;"></i>
-                            </li>
-                            <li>
-                                <span class="rank-num">4</span>
-                                <div class="rank-user"><strong>궁궐나들이</strong><span>980 점</span></div>
-                            </li>
-                            <li>
-                                <span class="rank-num">5</span>
-                                <div class="rank-user"><strong>한글사랑</strong><span>870 점</span></div>
-                            </li>
-                        </ul>
-                        <div style="text-align:center; margin-top:15px;">
-                            <a href="#" style="font-size:13px; color:#aa4c39; text-decoration:underline;">전체 순위표 보기</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
     </main>
 
     <main id="section-profile" class="main-section container" style="padding:0; max-width:100%;">
@@ -1062,88 +825,49 @@
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="graphs.js"></script>
     <script>
-        // ★ 로그인 상태를 저장하는 변수 (기본값: false)
-        let isLoggedIn = false;
 
-        // [기능] 로그인 버튼 클릭 시 실행
-        function doLogin() {
-            // 1. 상태를 로그인됨(true)으로 변경
-            isLoggedIn = true;
+        // [NEW] 로그인 버튼 클릭 시 (로그인 성공 처리)
+        function handleLogin() {
+            // (간단한 유효성 검사 생략 가능)
+            alert("로그인 되었습니다! 나의 연구 도구로 이동합니다.");
             
-            // 2. 로그인 화면 숨기고 마이페이지 보여주기
+            isLoggedIn = true; // ★ 로그인 상태로 변경
+            switchMainTab('record'); // 기록 페이지로 이동
+        }
+        
+       // [NEW] 로그인 시 마이페이지로 화면 전환하는 함수
+        function doLogin() {
+            // 1. 로그인 입력폼 숨기기
             document.getElementById('view-login').style.display = 'none';
+            // 2. 마이페이지 내용 보이기
             document.getElementById('view-mypage').style.display = 'block';
             
-            // 3. 브레드크럼(경로) 텍스트 변경
-            document.getElementById('breadcrumb').innerHTML = '<span class="current">마이페이지</span>';
-
+            // 3. (선택사항) 상단의 로그인 메뉴 아이콘 등을 '로그인됨' 상태로 변경하려면 여기서 처리
+            // 예: document.querySelector('.user-menu img').src = 'img/logged-in-icon.png';
+            
             // 4. 화면 최상단으로 이동
             window.scrollTo(0, 0);
-            
-            // 알림 (선택사항)
-            // alert("환영합니다! 마이페이지로 이동합니다.");
         }
 
         let currentArchiveIndex = 0;
-
-        // [기능] 메인 탭(메뉴) 전환 함수
         function switchMainTab(tabName) {
-            // 1. 상단 메뉴 활성화 스타일 처리
             document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active-menu'));
-            if(document.getElementById('menu-' + tabName)) {
-                document.getElementById('menu-' + tabName).classList.add('active-menu');
-            }
-
-            // 2. 메인 섹션 보여주기/숨기기
+            if(document.getElementById('menu-' + tabName)) document.getElementById('menu-' + tabName).classList.add('active-menu');
             document.querySelectorAll('.main-section').forEach(section => section.classList.remove('active-section'));
             document.getElementById('section-' + tabName).classList.add('active-section');
-
-            // 3. 브레드크럼 및 페이지별 초기화 로직
             const bread = document.getElementById('breadcrumb');
-
-            if(tabName === 'home') {
-                bread.innerHTML = '<span class="current">홈</span>';
-            } 
-            else if(tabName === 'archive-hub') { 
-                bread.innerHTML = '<span class="current">아카이브</span>'; 
-                goArchiveHubPage('landing'); 
-            }
-            else if(tabName === 'archive') { 
-                bread.innerHTML = '<span class="current">디지털 자료실</span>'; 
-                goArchivePage('landing'); 
-            }
-            else if(tabName === 'ritual') { 
-                bread.innerHTML = '<span class="current">의례 이야기</span>'; 
-                goRitualScene(1); 
-            }
-            else if(tabName === 'record') {
-                bread.innerHTML = '<span class="current">나의 연구 도구</span>';
-            }
-            else if(tabName === 'rest') {
-                bread.innerHTML = '<span class="current">쉼터</span>';
-            }
-            else if(tabName === 'profile') {
-                // ★ 핵심 수정: 로그인 여부에 따라 보여줄 화면 결정
-                if (isLoggedIn) {
-                    // 로그인 된 상태라면 -> 마이페이지 보이기
-                    document.getElementById('view-login').style.display = 'none';
-                    document.getElementById('view-mypage').style.display = 'block';
-                    bread.innerHTML = '<span class="current">마이페이지</span>';
-                } else {
-                    // 로그인 안 된 상태라면 -> 로그인 창 보이기
-                    document.getElementById('view-login').style.display = 'flex'; // flex로 해야 중앙 정렬 유지됨
-                    document.getElementById('view-mypage').style.display = 'none';
-                    bread.innerHTML = '<span class="current">로그인</span>';
-                }
-            }
+            if(tabName === 'home') bread.innerHTML = '<span class="current">홈</span>';
+            else if(tabName === 'archive-hub') { bread.innerHTML = '<span class="current">아카이브</span>'; goArchiveHubPage('landing'); }
+            else if(tabName === 'archive') { bread.innerHTML = '<span class="current">디지털 자료실</span>'; goArchivePage('landing'); }
+            else if(tabName === 'ritual') { bread.innerHTML = '<span class="current">의례 이야기</span>'; goRitualScene(1); }
+            else if(tabName === 'record') bread.innerHTML = '<span class="current">나의 연구 도구</span>';
+            else if(tabName === 'rest') bread.innerHTML = '<span class="current">쉼터</span>';
+            else if(tabName === 'profile') bread.innerHTML = '<span class="current">로그인</span>';
         }
-
-        // [아카이브 허브 페이지 이동]
         function goArchiveHubPage(pageName) {
             const section = document.getElementById('section-archive-hub');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             const bread = document.getElementById('breadcrumb');
-            
             if(pageName === 'landing') {
                 document.getElementById('page-hub-landing').classList.add('active');
                 bread.innerHTML = '<span class="current">아카이브</span>';
@@ -1165,79 +889,19 @@
                 bread.innerHTML = '<span class="nav-link" onclick="goArchiveHubPage(\'artifact-search\')">유물 검색</span> <span class="separator">></span> <span class="current">청룡포</span>';
             }
         }
-
-        // [수정됨] 커버 플로우 슬라이드 로직
-        let cfIndex = 0; // 현재 활성화된 인덱스
-        const cfCards = document.querySelectorAll('.coverflow-card');
-        const cfDots = document.querySelectorAll('.slider-dots .dot');
-        const totalCfSlides = cfCards.length;
-
-        // 초기 실행
-        updateCoverFlow();
-
-        function updateCoverFlow() {
-            // 모든 카드 초기화 (클래스 제거)
-            cfCards.forEach(card => {
-                card.classList.remove('active', 'prev', 'next', 'hide-left', 'hide-right');
+        function moveArchiveSlide(direction) {
+            const track = document.getElementById('archiveTrack');
+            const indicators = document.querySelectorAll('.indicator');
+            const totalSlides = 4;
+            currentArchiveIndex += direction;
+            if (currentArchiveIndex < 0) currentArchiveIndex = totalSlides - 1;
+            else if (currentArchiveIndex >= totalSlides) currentArchiveIndex = 0;
+            track.style.transform = `translateX(-${currentArchiveIndex * 100}%)`;
+            indicators.forEach((ind, idx) => {
+                if(idx === currentArchiveIndex) ind.classList.add('active');
+                else ind.classList.remove('active');
             });
-            
-            // 인디케이터 초기화
-            cfDots.forEach(dot => dot.classList.remove('active'));
-            if(cfDots[cfIndex]) cfDots[cfIndex].classList.add('active');
-
-            // 1. 현재(Active) 카드 설정
-            cfCards[cfIndex].classList.add('active');
-
-            // 2. 이전(Prev) 카드 설정
-            // (인덱스가 0이면 마지막 카드가 이전 카드가 됨 - 순환)
-            let prevIndex = (cfIndex - 1 + totalCfSlides) % totalCfSlides;
-            cfCards[prevIndex].classList.add('prev');
-
-            // 3. 다음(Next) 카드 설정
-            // (인덱스가 마지막이면 첫번째 카드가 다음 카드가 됨 - 순환)
-            let nextIndex = (cfIndex + 1) % totalCfSlides;
-            cfCards[nextIndex].classList.add('next');
-
-            // 4. 나머지 카드 처리 (숨김)
-            // 카드가 4개뿐이므로 active, prev, next를 제외한 하나는 숨겨야 함
-            for(let i=0; i < totalCfSlides; i++) {
-                if(i !== cfIndex && i !== prevIndex && i !== nextIndex) {
-                    // 현재 위치보다 작으면 왼쪽으로 숨기고, 크면 오른쪽으로 숨김
-                    // 순환 구조라 단순 비교는 어렵지만, 4개 기준으로는 
-                    // active 맞은편 카드를 적절히 숨겨주면 됩니다.
-                    if (i < cfIndex) card.classList.add('hide-left');
-                    else card.classList.add('hide-right');
-                    
-                    // (간단히 모두 hide-right로 보내도 무방함, 어차피 안보임)
-                    cfCards[i].classList.add('hide-right'); 
-                }
-            }
         }
-
-        // 버튼 클릭 시 이동 함수
-        function moveCoverFlow(direction) {
-            cfIndex += direction;
-            
-            // 인덱스 순환 처리
-            if (cfIndex < 0) cfIndex = totalCfSlides - 1;
-            else if (cfIndex >= totalCfSlides) cfIndex = 0;
-            
-            updateCoverFlow();
-        }
-
-        // 페이지 로드 시에도 초기화 (안전을 위해)
-        window.addEventListener('load', () => {
-             // 0.1초 뒤 실행 (DOM 렌더링 확보)
-             setTimeout(updateCoverFlow, 100);
-        });
-        
-        // 아카이브 탭 클릭 시에도 초기화 (탭 전환 시 깨짐 방지)
-        // 기존 switchMainTab 함수 내 'archive-hub' 분기에 추가 권장
-        // 페이지 로드 시 혹은 아카이브 탭 클릭 시 초기화
-        // goArchiveHubPage('landing') 함수 내부에 아래 줄을 추가해주면 좋습니다:
-        // currentArchiveIndex = 0; moveHubSlide(0);
-
-        // [디지털 자료실 페이지 이동]
         function goArchivePage(pageName) {
             const section = document.getElementById('section-archive');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
@@ -1245,25 +909,13 @@
             else if(pageName === 'list') document.getElementById('page-archive-list').classList.add('active');
             else if(pageName === 'detail') document.getElementById('page-archive-detail').classList.add('active');
         }
-
-        // [의례 이야기 씬 이동 (네트워크 그래프)]
         function goRitualScene(step) {
             const section = document.getElementById('section-ritual');
             section.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             if(step === 1) document.getElementById('scene-selection').classList.add('active');
-            else if(step === 2) { 
-                document.getElementById('scene-ontology-1').classList.add('active'); 
-                // graphs.js에 정의된 그리기 함수가 있다면 실행 (오류 방지를 위해 try-catch 혹은 존재 여부 체크)
-                if(typeof drawNetwork1 === 'function') setTimeout(drawNetwork1, 100); 
-            }
-            else if(step === 3) { 
-                document.getElementById('scene-ontology-2').classList.add('active'); 
-                if(typeof drawNetwork2 === 'function') setTimeout(drawNetwork2, 100); 
-            }
-            else if(step === 4) { 
-                document.getElementById('scene-ontology-3').classList.add('active'); 
-                if(typeof drawNetwork3 === 'function') setTimeout(drawNetwork3, 100); 
-            }
+            else if(step === 2) { document.getElementById('scene-ontology-1').classList.add('active'); setTimeout(drawNetwork1, 100); }
+            else if(step === 3) { document.getElementById('scene-ontology-2').classList.add('active'); setTimeout(drawNetwork2, 100); }
+            else if(step === 4) { document.getElementById('scene-ontology-3').classList.add('active'); setTimeout(drawNetwork3, 100); }
         }
     </script>
 </body>
