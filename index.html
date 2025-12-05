@@ -385,7 +385,10 @@
 
         <div id="page-hub-event-detail" class="sub-page fade-in">
             <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('people-detail')" class="back-btn">← 선조 연대기로</button></div>
-            <div class="event-header"><h2>기축옥사(己丑獄事)</h2><p class="source">《선조실록》 59권</p></div>
+            <div class="event-header"><h2>기축옥사(己丑獄事)</h2>
+                <p class="source"><strong>《선조실록》 59권, 선조 28년 1월 10일 계미 1번째 기사</strong></p>
+                <P>1589년 정여립이 모반 혐의로 처형되고 동인이 몰락하며 서인이 정국을 장악하고 호남 출신의 관직 등용까지 제한된 사건</P>
+            </div>
             <div class="event-content">
                 <div class="text-box translation">
                     <h3>《국역》</h3>
@@ -400,7 +403,7 @@
             <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('landing')" class="back-btn">← 아카이브 홈</button></div>
             <div class="search-container" style="margin-bottom: 30px;">
                 <span class="search-label">유물 검색</span>
-                <input type="text" placeholder="예) 청룡포" value="">
+                <input type="text" placeholder="예) 홍룡포" value="">
                 <span style="cursor:pointer; font-size: 24px;">🔍</span>
             </div>
             
@@ -444,10 +447,10 @@
                 </aside>
                 <main class="result-grid" style="flex:1;">
                     <div class="item-card" onclick="goArchiveHubPage('artifact-detail')">
-                        <div class="item-img"><span>의상</span><img src="img/blue-robe.png" alt="청룡포" style="width:100%; height:100%; object-fit:cover;"></div>
-                        <div class="item-title">청룡포(靑龍袍)</div>
+                        <div class="item-img"><span>의상</span><img src="img/red-robe.png" alt=홍룡포" style="width:100%; height:100%; object-fit:cover;"></div>
+                        <div class="item-title">홍룡포(紅龍袍)</div>
                     </div>
-                    <div class="item-card"><div class="item-img"><span>의상</span><img src="img/red-robe.jpg" alt="홍룡포" style="width:100%; height:100%; object-fit:cover;"></div><div class="item-title">홍룡포</div></div>
+                    <div class="item-card"><div class="item-img"><span>의상</span><img src="img/blue-robe.jpg" alt="청룡포" style="width:100%; height:100%; object-fit:cover;"></div><div class="item-title">청룡포</div></div>
                     <div class="item-card"><div class="item-img"><span>의상</span><img src="img/myeonbok.jpg" alt="면복" style="width:100%; height:100%; object-fit:cover;"></div><div class="item-title">면복</div></div>
                 </main>
             </div>
@@ -457,17 +460,17 @@
             <div style="margin-bottom: 20px;"><button onclick="goArchiveHubPage('artifact-search')" class="back-btn">← 검색 결과</button></div>
             
             <div class="artifact-layout">
-                <div class="artifact-viewer-container" style="flex: 2;">
-                    
+                <div class="artifact-viewer-container" style="flex: 1.5;">
                     <div class="viewer-tabs">
-                        <button class="tab-btn active">사진</button>
-                        <button class="tab-btn">3D 모델 보기</button>
+                        <button class="tab-btn active" onclick="switchViewer('photo', this)">사진 보기</button>
+                        <button class="tab-btn" onclick="switchViewer('3d', this)">3D 뷰어 보기</button>
                     </div>
-
+                    
                     <div class="artifact-viewer">
-                        <div class="viewer-window">
-                            <img src="img/blue-robe-detail.jpg" alt="청룡포(상세)" style="width:80%; height:auto;">
+                        <div class="viewer-window" id="viewerWindow">
+                            <img src="img/red-robe.PNG" alt="홍룡포" style="max-width:80%; height:auto;">
                         </div>
+                        
                         <div class="viewer-controls">
                             <button>&lt;</button> <span>1 / 3</span> <button>&gt;</button>
                         </div>
@@ -475,9 +478,96 @@
                 </div>
 
                 <div class="artifact-info">
-                    <h2>청룡포(靑龍袍)</h2>
-                    <table class="artifact-table"><tr><th>유형</th><td>곤룡포</td></tr><tr><th>착용</th><td>국왕</td></tr></table>
-                    <div class="artifact-record"><h3>관련 기록</h3><div class="record-item"><strong>1392년</strong><p>조선 건국과 함께 제정.</p></div></div>
+                    <h2>홍룡포(紅龍袍)</h2>
+                    <table class="artifact-table">
+                        <tr><th>유형</th><td>곤룡포</td></tr>
+                        <tr><th>시기</th><td>조선 초기(태조 이성계 재위)</td></tr>
+                        <tr><th>착용 계층</th><td>국왕</td></tr>
+                        <tr><th>용도</th><td>국정 주요 의례 및 평시 집무복</td></tr>
+                        <tr><th>형태</th><td>원형 옷깃, 넓은 소매, 깃 아래 대대(大帶)</td></tr>
+                        <tr><th>재질</th><td>홍색 운문사(雲紋紗), 금사(金絲) 용문 자수</td></tr>
+                        <tr><th>문양</th><td>가슴, 등, 양 어깨에 오죠룡(五爪龍) 보(補) / 소매 끝에 구름 문양</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="artifact-detail-bottom" style="margin-top: 60px;">
+                
+                <div class="detail-row" style="display: flex; gap: 40px; margin-bottom: 50px;">
+                    <div class="detail-col" style="flex: 1;">
+                        <h3 class="section-title-small">홍룡포 착용 모습 (어진)</h3>
+                        <div class="portrait-grid">
+                            <div class="portrait-item"><img src="img/eojin1.webp" alt="영조"></div>
+                            <div class="portrait-item"><img src="img/eojin2.webp" alt="철종"></div>
+                            <div class="portrait-item"><img src="img/eojin3.webp" alt="고종"></div>
+                        </div>
+                    </div>
+
+                    <div class="detail-col" style="flex: 1;">
+                        <h3 class="section-title-small">관련 기록</h3>
+                        <div class="record-list">
+                            <div class="record-item">
+                                <strong>1392년 (태조 1년) 7월 28일</strong>
+                                <p>조선 건국과 함께 국왕의 의례복으로 제정.</p>
+                            </div>
+                            <div class="record-item">
+                                <strong>1400년 (정종 2년) 1월 1일</strong>
+                                <p>왕의 권위를 상징하는 용포에 금사 자수 보(補)를 부착하는 제도 시행.</p>
+                            </div>
+                            <div class="record-item">
+                                <strong>1418년 (태종 18년) 8월 10일</strong>
+                                <p>용포의 색상과 문양에 대한 세부 규정 강화 및 보완.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-row" style="margin-top: 60px;">
+                    <h3 class="section-title-small">복식 구성</h3>
+                    
+                    <div class="composition-full-grid">
+                        <div class="comp-item-full">
+                            <img src="img/red-robe.PNG" alt="홍룡포">
+                            <div class="comp-info">
+                                <span class="comp-tag">몸</span>
+                                <span class="comp-name">홍룡포 앞</span>
+                            </div>
+                        </div>
+                        <div class="comp-item-full">
+                            <img src="img/red-robe-back.PNG" alt="뒷면">
+                            <div class="comp-info">
+                                <span class="comp-tag">몸</span>
+                                <span class="comp-name">홍룡포 뒤</span>
+                            </div>
+                        </div>
+                        <div class="comp-item-full">
+                            <img src="img/ikseongwan.png" alt="익선관">
+                            <div class="comp-info">
+                                <span class="comp-tag">머리</span>
+                                <span class="comp-name">익선관</span>
+                            </div>
+                        </div>
+                        <div class="comp-item-full">
+                            <img src="img/tanggeon.PNG" alt="익선관">
+                            <div class="comp-info">
+                                <span class="comp-tag">머리</span>
+                                <span class="comp-name">탕건</span>
+                            </div>
+                        </div>
+                        <div class="comp-item-full">
+                            <img src="img/okdae.PNG" alt="옥대">
+                            <div class="comp-info">
+                                <span class="comp-tag">허리</span>
+                                <span class="comp-name">옥대</span>
+                            </div>
+                        </div>
+                        <div class="comp-item-full">
+                            <img src="img/mokhwa.PNG" alt="목화">
+                            <div class="comp-info">
+                                <span class="comp-tag">신발</span>
+                                <span class="comp-name">목화</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1271,6 +1361,39 @@
             } else {
                 btn.classList.add('wrong');
                 alert("아쉽네요, 오답입니다. 😅");
+            }
+        }
+
+        // [NEW] 사진 <-> 3D 뷰어 전환 기능
+        function switchViewer(type, btnElement) {
+            const viewerWindow = document.getElementById('viewerWindow');
+            const tabs = document.querySelectorAll('.viewer-tabs .tab-btn');
+
+            // 1. 탭 버튼 스타일 활성화/비활성화
+            tabs.forEach(tab => tab.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // 2. 내용 교체
+            if (type === '3d') {
+                // 3D 뷰어 (iframe) 로드
+                viewerWindow.innerHTML = `
+                    <iframe 
+                        src="https://www.kculture.or.kr/jnrepo/content/hanbok/2024/%EB%82%A8%EC%9E%90%205_%EC%99%95%20%EC%83%81%EB%B3%B5(%ED%99%8D%EB%A3%A1%ED%8F%AC)/%EB%82%A8%EC%9E%90%205_%EC%99%95%20%EC%83%81%EB%B3%B5(%ED%99%8D%EB%A3%A1%ED%8F%AC).html" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+                // 3D 뷰어에서는 이미지가 꽉 차야 하므로 스타일 조정
+                viewerWindow.style.padding = "0"; 
+                viewerWindow.style.background = "#fff";
+            } else {
+                // 다시 사진으로 복귀
+                viewerWindow.innerHTML = `<img src="/img/홍룡포.jpg" alt="홍룡포" style="max-width:80%; height:auto;">`;
+                // 스타일 원상복구
+                viewerWindow.style.padding = ""; 
+                viewerWindow.style.background = "#f9f9f9"; // 원래 배경색
             }
         }
 
