@@ -6,16 +6,16 @@
 // [1] 공통 옵션 (디자인 및 물리엔진)
 const commonOptions = {
     nodes: {
-        borderWidth: 2,
+        borderWidth: 4,
         size: 40,
         color: { border: '#333', background: '#fff' },
-        font: { face: 'Pretendard', size: 14, color: '#333', strokeWidth: 2, strokeColor: '#fff' },
+        font: { face: 'Pretendard-bold', size: 18, color: '#333', strokeWidth: 2, strokeColor: '#fff' },
         shape: 'image'
     },
     edges: {
         color: '#888',
         arrows: { to: { enabled: true, scaleFactor: 0.5 } },
-        font: { align: 'middle', size: 12 },
+        font: { align: 'middle', size: 18 },
         smooth: { type: 'cubicBezier' }
     },
     physics: {
@@ -181,24 +181,24 @@ function drawNetwork3() {
 
     var options = {
         nodes: {
-            borderWidth: 2,
+            borderWidth: 4,
             size: 40,
             color: { border: '#333', background: '#fff' },
-            font: { face: 'Pretendard', size: 14, color: '#333', strokeWidth: 3, strokeColor: '#fff' },
+            font: { face: 'Pretendard-bold', size: 18, color: '#333', strokeWidth: 3, strokeColor: '#fff' },
             shape: 'image'
         },
         edges: {
             color: '#666',
             arrows: { to: { enabled: true, scaleFactor: 0.5 } },
-            font: { align: 'middle', size: 12, strokeWidth: 0, color: '#333', background: '#f9f9f9' },
+            font: { align: 'middle', size: 18, strokeWidth: 0, color: '#333', background: '#f9f9f9' },
             smooth: { type: 'cubicBezier', forceDirection: 'vertical', roundness: 0.4 }
         },
         physics: {
             enabled: true,
             barnesHut: {
-                gravitationalConstant: -4000,
+                gravitationalConstant: -6000,
                 centralGravity: 0.1,
-                springLength: 200,
+                springLength: 250,
                 springConstant: 0.04,
                 damping: 0.09,
                 avoidOverlap: 1
