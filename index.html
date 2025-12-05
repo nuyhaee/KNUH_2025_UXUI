@@ -54,7 +54,7 @@
                 
                 <div class="dark-search-bar">
                     <span class="icon">🔍 </span>
-                    <input type="text" placeholder="궁중의례, 인물, 장소, 복식 검색">
+                    <input type="text" placeholder="  궁중의례, 인물, 장소, 복식 검색">
                 </div>
             </div>
 
@@ -301,16 +301,18 @@
                 <aside class="sidebar">
                     <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;"><span style="font-size:18px; font-weight:700;">검색필터</span></div>
                     <div class="filter-section">
-                        <span class="filter-title">자료 유형</span>
-                            <div class="filter-item"><input type="checkbox" checked>인물</div>
-                            <div class="filter-item"><input type="checkbox">의상 및 유물</div>
-                            <div class="filter-item"><input type="checkbox">행렬 및 음악</div>
-                            <div class="filter-item"><input type="checkbox">궁중음식</div>
+                        <span class="filter-title">인물</span>
+                        <div class="filter-item"><input type="checkbox" > 왕실(왕, 왕비, 대비, 왕세자 등) </div>
+                        <div class="filter-item"><input type="checkbox" > 관료(양반계층 - 문관, 무관)</div>
+                        <div class="filter-item"><input type="checkbox" > 중인(실무관리 - 별감, 의관 등)</div>
+                        <div class="filter-item"><input type="checkbox" > 궁궐 직원(내시, 상궁 등)</div>
+                        <div class="filter-item"><input type="checkbox" > 특별 수행원(호위무사, 악대 등)</div>
                     </div>
                     <div class="filter-section">
                         <span class="filter-title">시대</span>
-                        <div class="filter-item"><input type="checkbox" checked> 조선시대 전기</div>
-                        <div class="filter-item"><input type="checkbox"> 조선시대 후기</div>
+                        <div class="filter-item"><input type="checkbox" > 조선시대 전기(1392 ~ 1592)</div>
+                        <div class="filter-item"><input type="checkbox" checked> 조선시대 후기(1593 ~ 1863)</div>
+                        <div class="filter-item"><input type="checkbox" > 근대(1864 ~ 1910)</div>
                     </div>
                 </aside>
                  <main class="result-grid" style="flex:1;">
@@ -406,16 +408,38 @@
                 <aside class="sidebar">
                     <div class="filter-header" style="margin-bottom: 20px; padding-bottom:10px; border-bottom:1px solid #ddd;"><span style="font-size:18px; font-weight:700;">검색필터</span></div>
                     <div class="filter-section">
-                        <span class="filter-title">자료 유형</span>
-                            <div class="filter-item"><input type="checkbox" >인물</div>
-                            <div class="filter-item"><input type="checkbox" checked>의상 및 유물</div>
-                            <div class="filter-item"><input type="checkbox">행렬 및 음악</div>
-                            <div class="filter-item"><input type="checkbox">궁중음식</div>
+                        <span class="filter-title">시대</span>
+                        <div class="filter-item"><input type="checkbox" > 조선시대 전기(1392 ~ 1592)</div>
+                        <div class="filter-item"><input type="checkbox" checked> 조선시대 후기(1593 ~ 1863)</div>
+                        <div class="filter-item"><input type="checkbox" > 근대(1864 ~ 1910)</div>
                     </div>
                     <div class="filter-section">
-                        <span class="filter-title">자료 형태</span>
-                        <div class="filter-item"><input type="checkbox" checked> 사진</div>
-                        <div class="filter-item"><input type="checkbox"> 3D모델</div>
+                        <span class="filter-title">종류 - 복식</span>
+                        <div class="filter-item"><input type="checkbox" checked> 옷</div>
+                        <div class="filter-item"><input type="checkbox"> 모자</div>
+                        <div class="filter-item"><input type="checkbox"> 신발</div>
+                        <div class="filter-item"><input type="checkbox"> 장신구</div>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-title">종류 - 물건</span>
+                        <div class="filter-item"><input type="checkbox"> 무기/갑옷</div>
+                        <div class="filter-item"><input type="checkbox"> 깃발/의장물</div>
+                        <div class="filter-item"><input type="checkbox"> 악기</div>
+                        <div class="filter-item"><input type="checkbox"> 기마/탈것</div>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-title">종류 - 재질</span>
+                        <div class="filter-item"><input type="checkbox"> 금/은/금속</div>
+                        <div class="filter-item"><input type="checkbox"> 비단/직물</div>
+                        <div class="filter-item"><input type="checkbox"> 옥/보석</div>
+                        <div class="filter-item"><input type="checkbox"> 나무/가죽</div>
+                    </div>
+                    <div class="filter-section">
+                        <span class="filter-title">종류 - 색상</span>
+                        <div class="filter-item"><input type="checkbox"> 붉은색</div>
+                        <div class="filter-item"><input type="checkbox"> 푸른색</div>
+                        <div class="filter-item"><input type="checkbox"> 황색, 금색</div>
+                        <div class="filter-item"><input type="checkbox"> 흑/벡</div>
                     </div>
                 </aside>
                 <main class="result-grid" style="flex:1;">
@@ -496,21 +520,27 @@
                         <span style="font-size:18px; font-weight:700;">검색필터</span>
                     </div>
                     <div class="filter-section">
-                        <span class="filter-title">자료 유형</span>
-                        <div class="filter-item"><input type="checkbox" checked> 사진 (1,234)</div>
-                        <div class="filter-item"><input type="checkbox"> 동영상 (101)</div>
-                        <div class="filter-item"><input type="checkbox"> 3D 모델 (50)</div>
+                        <span class="filter-title">자료 형태</span>
+                        <div class="filter-item"><input type="checkbox" checked> 의궤도설(옛날 그림 원본)</div>
+                        <div class="filter-item"><input type="checkbox"> 실사 사진 (유물/현장 사진)</div>
+                        <div class="filter-item"><input type="checkbox"> 재현 행사 (요즘 사람들이 재현한 모습)</div>
+                        <div class="filter-item"><input type="checkbox"> 복원 모형/CG (그래픽이나 모형)</div>
                     </div>
                     <div class="filter-section">
-                        <span class="filter-title">관련 인물</span>
-                        <input type="text" placeholder="예) 숙종" style="width: 100%; padding: 5px; font-family:'Pretendard'">
+                        <span class="filter-title">인물</span>
+                        <div class="filter-item"><input type="checkbox" > 왕실(왕, 왕비, 대비, 왕세자 등) </div>
+                        <div class="filter-item"><input type="checkbox" > 관료(양반계층 - 문관, 무관)</div>
+                        <div class="filter-item"><input type="checkbox" > 중인(실무관리 - 별감, 의관 등)</div>
+                        <div class="filter-item"><input type="checkbox" > 궁궐 직원(내시, 상궁 등)</div>
+                        <div class="filter-item"><input type="checkbox" > 특별 수행원(호위무사, 악대 등)</div>
                     </div>
                     <div class="filter-section">
-                        <span class="filter-title">소장처</span>
-                        <div class="filter-item"><input type="checkbox" checked> 국립조선왕조실록박물관</div>
-                        <div class="filter-item"><input type="checkbox"> 서울대학교 규장각</div>
-                        <div class="filter-item"><input type="checkbox"> 한국학중앙연구원 장서각</div>
+                        <span class="filter-title">시대</span>
+                        <div class="filter-item"><input type="checkbox" > 조선시대 전기(1392 ~ 1592)</div>
+                        <div class="filter-item"><input type="checkbox" checked> 조선시대 후기(1593 ~ 1863)</div>
+                        <div class="filter-item"><input type="checkbox" > 근대(1864 ~ 1910)</div>
                     </div>
+                    
                 </aside>
                 <main class="result-grid">
                     <div class="item-card" onclick="goArchivePage('detail')">

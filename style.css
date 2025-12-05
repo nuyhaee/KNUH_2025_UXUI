@@ -47,7 +47,7 @@ nav ul li:hover, nav ul li.active-menu { color: #000; font-weight: 700; border-b
     margin-left: calc(-50vw + 50%);
     height: 600px; 
     overflow: visible !important; 
-    
+    margin-top: -40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,8 +92,8 @@ nav ul li:hover, nav ul li.active-menu { color: #000; font-weight: 700; border-b
 
 .home-hero-content h1 {
     font-family: 'Joseon100Years', serif;
-    font-size: 40px; /* 제목 크기 키움 */
-    margin-bottom: 40px;
+    font-size: 55px; /* 제목 크기 키움 */
+    margin-bottom: 55px;
     text-shadow: 0 2px 15px rgba(0,0,0,0.6);
     font-weight: normal;
     line-height: 1.3;
